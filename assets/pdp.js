@@ -141,7 +141,7 @@ $(document).ready(function() {
   // $('.bold-ro__one-time-purchase').text(updatedOneTimeTxt);
   if ($('.ro_widget').length && $('#bold-widget').length) {
     var discount = $('.bsub-widget__group-discount-summary').text().replace('(Save ', '').replace(')', '');
-    var price = $('.bsub-widget__plan-pricing span[data-bsub-per-delivery-price]').text();
+    var price = $('.bsub-widget__plan-pricing span[data-bsub-per-delivery-price]').eq(0).text();
     $('.bold-ro__initial-discount-percent').text(discount);
     $('.bold-ro__initial-discount-price').text(price);
     

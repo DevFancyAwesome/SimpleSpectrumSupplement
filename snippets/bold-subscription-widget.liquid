@@ -40,7 +40,7 @@
     window.BOLD.subscriptions.config.lineItemNameSelectors = window.BOLD.subscriptions.config.lineItemNameSelectors || [];
     window.BOLD.subscriptions.config.checkoutButtonSelectors = window.BOLD.subscriptions.config.checkoutButtonSelectors || [];
 
-    window.BOLD.subscriptions.config.featureFlags = window.BOLD.subscriptions.config.featureFlags || ["BE-763-remove-shop-data-from-unauthenticated-user","BE-751-customer-portal-passwordless-login","BE-1203-sub-creation-ignore-address-ids","BS2-4293-skip-tx-fee-eq-zero","BE-1393-relocate-prepaid-metadata"];
+    window.BOLD.subscriptions.config.featureFlags = window.BOLD.subscriptions.config.featureFlags || ["BS2-4293-skip-tx-fee-eq-zero","BE-1393-relocate-prepaid-metadata","BE-1478-sync-customer"];
     window.BOLD.subscriptions.config.subscriptionProcessingFrequency = '60';
     window.BOLD.subscriptions.config.requireMSPInitialLoadingMessage = true;
     window.BOLD.subscriptions.data = window.BOLD.subscriptions.data || {};
@@ -74,7 +74,7 @@
     if (localStorage && localStorage.getItem('boldSubscriptionsSubscriptionGroups')) {
         window.BOLD.subscriptions.data.subscriptionGroups = JSON.parse(localStorage.getItem('boldSubscriptionsSubscriptionGroups'));
     } else {
-        window.BOLD.subscriptions.data.subscriptionGroups = [{"id":35755,"billing_rules":[{"id":81282,"subscription_group_id":35755,"interval_name":"Monthly","billing_rule":"FREQ=MONTHLY","custom_billing_rule":""}],"is_subscription_only":false,"allow_prepaid":false,"is_prepaid_only":false,"should_continue_prepaid":true,"continue_prepaid_type":"as_prepaid","prepaid_durations":[{"id":35294,"subscription_group_id":35755,"total_duration":1,"discount_type":"percentage","discount_value":0}],"selection_options":[{"platform_entity_id":"8207354953965"},{"platform_entity_id":"1673605611629"},{"platform_entity_id":"8075686609133"},{"platform_entity_id":"6242333163697"}],"discount_type":"percentage","percent_discount":15,"fixed_discount":0,"can_add_to_cart":true}];
+        window.BOLD.subscriptions.data.subscriptionGroups = [{"id":35755,"billing_rules":[{"id":81282,"subscription_group_id":35755,"interval_name":"Monthly","billing_rule":"FREQ=MONTHLY","custom_billing_rule":""},{"id":82233,"subscription_group_id":35755,"interval_name":"Every 2 months","billing_rule":"FREQ=MONTHLY;INTERVAL=2","custom_billing_rule":""},{"id":82234,"subscription_group_id":35755,"interval_name":"Every 3 months","billing_rule":"FREQ=MONTHLY;INTERVAL=3","custom_billing_rule":""},{"id":82235,"subscription_group_id":35755,"interval_name":"Every 2 weeks","billing_rule":"FREQ=WEEKLY;INTERVAL=2","custom_billing_rule":""},{"id":82236,"subscription_group_id":35755,"interval_name":"Every 6 weeks","billing_rule":"FREQ=WEEKLY;INTERVAL=6","custom_billing_rule":""}],"is_subscription_only":false,"allow_prepaid":false,"is_prepaid_only":false,"should_continue_prepaid":true,"continue_prepaid_type":"as_prepaid","prepaid_durations":[{"id":35294,"subscription_group_id":35755,"total_duration":1,"discount_type":"percentage","discount_value":0}],"selection_options":[{"platform_entity_id":"8207354953965"},{"platform_entity_id":"8075686609133"},{"platform_entity_id":"6242333163697"},{"platform_entity_id":"8250667335917"}],"discount_type":"percentage","percent_discount":15,"fixed_discount":0,"can_add_to_cart":true}];
     }
 
     window.BOLD.subscriptions.isFeatureFlagEnabled = function (featureFlag) {
