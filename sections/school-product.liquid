@@ -1,0 +1,64 @@
+<section class="school-product">
+  <div class="container">
+    <img src="{{ section.settings.image | img_url: 'master' }}">
+    <div class="text">
+      <div class="stars">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+      <h2>{{ section.settings.title }}</h2>
+      <h3>{{ section.settings.subtitle }}</h3>
+      {{ section.settings.text }}
+      {% assign product = section.settings.product %}
+      <div class="row">
+        <div class="price">{{ product.price | money }}</div>
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+          <button type="submit" name="add" id="AddToCart" class="btn red-btn addtocart"><ls-static-296756>add to cart</ls-static-296756></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Product",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "image"
+      },
+      { 
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Subtitle"
+      },
+      {
+        "id": "text",
+        "type": "richtext",
+        "label": "Text"
+      },
+      {
+        "id": "product",
+        "type": "product",
+        "label": "Product"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

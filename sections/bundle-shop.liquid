@@ -1,0 +1,82 @@
+<section class="shop-section" id="shop">
+  <div class="container">
+    <div class="show-row">
+      {% if section.settings.image != blank %}
+        <img src="{{ section.settings.image  | img_url: 'master' }}" alt="">
+      {% endif %}
+      <div class="text">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h2>{{ section.settings.title }}</h2>
+        {{ section.settings.text }}
+      </div>
+    </div>
+
+    {% assign product = all_products[section.settings.product] %}
+    <div class="bundle">
+      <h3><ls-static-721317>get the bundle:</ls-static-721317></h3>
+      <div class="bundle-products">
+        <div class="item">
+          <div class="price">$49.99</div>
+          <div class="title"><ls-static-492236>Simple Spectrum Nutritional Support</ls-static-492236> <small><ls-static-195219>Supplement</ls-static-195219></small></div>
+        </div>
+        <div class="plus">+</div>
+        <div class="item">
+          <div class="price">
+            <div class="price-row">
+              <div class="compare">$34.99</div>
+              $17.49
+            </div>
+            <span><ls-static-573995>(50% off reg. price)</ls-static-573995></span>
+          </div>
+          <div class="title"><ls-static-841848>Simple Spectrum Omega 3 DHA</ls-static-841848> <small><ls-static-605696>Supplement</ls-static-605696></small></div>
+        </div>
+      </div>
+      <div class="bundle-price">
+        <span class="compare">$84.98</span>
+        <span class="price">$67.48</span>
+        <span class="price-text"><ls-static-709613>When you buy together</ls-static-709613></span>
+      </div>
+    </div>
+    
+    {% if product %}
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        <input type="submit" value="Add to cart" class="btn red-btn" />
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Shop",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "image"
+      },
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      },
+      {
+        "id": "product",
+        "type": "product",
+        "label": "Product"
+      }
+    ]
+  }
+{% endschema %}

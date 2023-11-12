@@ -1,0 +1,68 @@
+<section class="bundle-footer">
+  <div class="container">
+    <div class="footer-row">
+      <div class="user">
+          <a href="/account" class="account"> 
+            <ls-static-763429>My Account</ls-static-763429>
+          </a>
+        </div> 
+        <div class="cart">
+          <a href="/cart">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+        </div>
+      </div>
+    <div class="social-wrapper">
+      <div class="title"><ls-static-60271>Follow Us:</ls-static-60271></div>
+      <div class="social">
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.url }}" target="_blank">
+            {{ block.settings.icon }}
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function() {
+    $('a[href="#shop"]').click(function(e) {
+      e.preventDefault();
+      console.log('ok')
+      $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top
+      }, 500);
+    })
+  })
+</script>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "blocks": [
+      {
+        "type": "link",
+        "name": "Link",
+        "settings": [
+          {
+            "id": "url",
+            "type": "url",
+            "label": "Url"
+          },
+          {
+            "id": "icon",
+            "type": "text",
+            "label": "Icon"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

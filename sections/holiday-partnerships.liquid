@@ -1,0 +1,45 @@
+<section class="school-partnerships">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    <div class="partners">
+    {% for block in section.blocks %}
+      <div class="logo">
+        <img src="{{ block.settings.logo | img_url: 'master' }}">
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{% schema %}
+  {
+    "name": "Partnerships",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo",
+        "name": "Logo",
+        "settings": [
+          {
+            "id": "logo",
+            "type": "image_picker",
+            "label": "Logo"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,57 @@
+<section class="bundle-banner">
+  <div class="container">
+    {% if section.settings.image != blank %}
+      <img src="{{ section.settings.image | img_url: 'master' }}">
+    {% endif %}
+    <div class="text">
+      <h2>
+        <span class="desktop">
+          {{ section.settings.title }}
+        </span>
+        <span class="mobile">
+          {{ section.settings.title_mobile }}
+        </span>
+        </h2>
+      <a href="{{ section.settings.link }}" class="btn red-btn">{{ section.settings.link_text}}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "id": "title",
+        "type": "html",
+        "label": "Title"
+      },
+      {
+        "id": "title_mobile",
+        "type": "html",
+        "label": "Title Mobile"
+      },
+      {
+        "id": "link",
+        "type": "url",
+        "label": "Link URL"
+      },
+      {
+        "id": "link_text",
+        "type": "text",
+        "label": "Link text"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "Image"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

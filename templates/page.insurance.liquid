@@ -1,0 +1,84 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'testimonials.scss.css' | asset_url | stylesheet_tag }}
+<!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1><span class="bold">{% include 'LS_83195002989_title', item: page %}{{ LS_83195002989_item_title  }}</span></h1>
+      </div>
+    </div>
+    <img src="{{ 'insurance_bg.png' | asset_url }}" alt="">
+  </section>
+  <!-- \Hero -->
+
+  <!-- Video Section -->
+  <section class="insurance video-section">
+    <div class="container">
+      <div class="text">
+        <h2><ls-static-3830015>Get Covered</ls-static-3830015></h2>
+        <p><strong><ls-static-173513>Did you know that Simple Spectrum Supplement may be covered by your insurance?</ls-static-173513> </strong></p>
+        <p>
+          <ls-static-1919301>We can help try and get your insurance to fund the supplement for your child! Simple Spectrum was designed with our children with sensory issues in mind. Our supplement has helped thousands of families see improvements in a child’s ASD symptoms.</ls-static-1919301>
+        </p>
+        <p>
+          <ls-static-1919301>Because of our passion in helping families, we have successfully helped parents fund our supplements for their children through their insurance coverage and we encourage you to do the same! One of our founders was directly involved with the success of getting insurance to pay for ABA (Applied Behavior Analysis) well before SB946 was passed. So now the same owner is using the same techniques to help get your insurance to fund our supplement.</ls-static-1919301>
+        </p>
+        <p>
+          <ls-static-1919301>Make your insurance work for you and your family! Vitamins and supplements are such an important preventive measure. Many parents see improvement in their child’s ABA therapies & other areas of learning after introducing Simple Spectrum Supplement.</ls-static-1919301>
+        </p>
+      </div>
+      <div class="video-bg">
+        <video controls poster="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Insurance.png?v=1599767013">
+          <source src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Getting_Insurance_To_Cover_Our_Product_5004fd27-5409-4bf9-80bf-20a2d52c9289.mp4?v=1599766878" type="video/mp4">
+        </video>
+        <div class="video-screen">
+          <img src="{{ 'video-bg.jpg' | asset_url }}" alt="">
+        </div>
+        <div class="play-btn"></div>
+      </div>
+      <div class="contact-us-btn">
+      	<a href="mailto:info@simplespectrumsupplement.com"><ls-static-625511>CONTACT US FOR DETAILS</ls-static-625511></a>
+      </div>
+    </div>
+  </section>
+  <!-- \Video Section -->
+
+<section id="subscribe-section" class="subscribe">
+    <div class="container">
+      <h2><ls-static-328888>Subscribe to the</ls-static-328888> <span class="bold"><ls-static-368116>Simple Digest</ls-static-368116></span> <ls-static-646709>& Get</ls-static-646709> <span class="bold"><ls-static-369077>10% off</ls-static-369077></span></h2>
+      <p>
+		<ls-static-720753>We’ll send you tips and resources as well as sales and promotions!</ls-static-720753>
+      </p>
+      <div class="klaviyo-form-SRqvHA"></div>
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+
+{{ 'text-template.js' | asset_url | script_tag }}

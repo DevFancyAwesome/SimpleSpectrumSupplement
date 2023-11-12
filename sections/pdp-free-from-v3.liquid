@@ -1,0 +1,53 @@
+<section class="school-free-from halloween">
+  <div class="container">
+    <div class="desktop">
+      <h3>{{ section.settings.subtitle }}</h3>
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+    <div class="mobile mobile-title">
+      {{ section.settings.subtitle }} <strong>{{ section.settings.title }}</strong>
+    </div>
+    <div class="items">
+      {% for block in section.blocks %}
+        <div class="item"><span>{{ block.settings.text }}</span></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Always Free From",
+    "settings": [
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Subtitle"
+      },
+      { 
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

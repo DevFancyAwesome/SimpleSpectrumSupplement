@@ -1,0 +1,65 @@
+{% assign product = all_products[section.settings.product] %}
+
+<div class="subscription-footer-container">
+  <div class="subscription-description">
+    <div class="left-panel">
+      <div class='price'>
+        <p class="title-bold font-27 pr-30">$49.99</p>
+      </div>
+      <div class='panel-description'>
+        <div>
+          <p class="title-bold">Simple Spectrum Nutritional</p>
+        </div>
+        <div>
+          <p class="title-bold">Support<span class="title-sub pl-5">Supplement</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="center-panel">+</div>
+    <div class="right-panel">
+      <div class='price'>
+        <p class="title-bold pr font-27"><span class="right-underline">$34.99</span>$26.49</p>
+        <p class="title-sub font-15">(25% off reg. price)</p>
+      </div>
+      <div class='panel-description'>
+        <div>
+          <p class="title-bold">Simple Spectrum</p>
+        </div>
+        <div>
+          <p class="title-bold">Omega 3 DHA<span class="title-sub pl-5">Supplement</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="subscription-price">
+    <span class="right-underline bold">$84.98</span><span class="bold price-red font-32">$76.48</span><span class="price-red">When you buy together</span>
+  </div>
+  <div class="discount">
+    <div class="title">When you buy together</div>
+    <div class="compare-at-price">$84.98</div>
+    <div class="price">$76.48</div>
+  </div>
+  <div class="subscription-add-cart">
+    {% if product %}
+      <form method="post" action="/cart/add" class="subscription-form">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        <input type="submit" value="Add to cart" class="btn red-btn subscription-footer-btn" />
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Subscription Shop",
+    "settings": [
+      {
+        "id": "product",
+        "type": "product",
+        "label": "Product"
+      }
+    ]
+  }
+{% endschema %}

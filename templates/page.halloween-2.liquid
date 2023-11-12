@@ -1,0 +1,203 @@
+{{ 'pdp.js' | asset_url | script_tag }}
+{{ 'halloween-prod.scss.css' | asset_url | stylesheet_tag }}
+{{ 'halloween.css' | asset_url | stylesheet_tag }}
+
+
+{% section 'halloween-hero-2' %}
+{% section 'halloween-subscribe-2' %}
+{% section 'halloween-partnerships-2' %}
+{% section 'halloween-product-2' %}
+{% section 'halloween-always-free-2' %}
+{% section 'halloween-shop-now-2' %}
+{% section 'halloween-testimonials-2' %}
+{% section 'halloween-inside-2' %}
+{% section 'halloween-join-2' %}
+{% section 'halloween-subscribe-bottom-2' %}
+{% section 'halloween-footer-2' %}
+
+<style type="text/css">
+  header .user, header .cart .icon {
+    font-size: 2.7vw;
+    font-family: simple-line-icons;
+}
+  header .cart .product-number {
+    top: 0.5vw;
+  }
+  .school-testimonials .text{
+    padding-top: 3vw;
+    padding-right:0px!important;
+  }
+  .school-subscribe {
+      background: #4f72c0!important;
+  }
+  .school-partnerships .slick-list.draggable {
+    overflow: hidden;
+  }
+  .product .select ul li, .product .select .active {
+    border-color: #4f72c0;
+}
+  .product .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:after, .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:after{
+    color:#fff!important;
+  }
+  .product .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:before, .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:before{
+    border-color:#fff!important;
+  }
+  .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:before {
+    border-color: #4f72c0!important;
+}
+  .mobile-group, .header-banner {
+    display: none;
+  }
+    section.school-partnerships h2 {
+      font-weight: 600;
+  }
+    .school-product .stars {
+     
+      color: #ea7a64;
+    }
+    .school-product h2 {
+      text-align: left;
+      margin-top:1.8vw;
+  }
+    section.school-product p {
+      font-size: 1vw;
+  }
+    .row.product .number {
+      display: none;
+  }
+    .product .select .active {
+      border-color: #4e72c0;
+      color: #4e72c0;
+  }
+    .bold-ro__radio-div.bold-ro__one-time-div.bold-ro__bold-active.red-btn, .product .bold-ro__product .bold-ro__radio-div {
+      border-color: #4e72c0;
+  }
+    .product .bold-ro__product .bold-ro__radio-div.bold-ro__bold-active {
+      background-color: #4e72c0;
+  }
+    .product .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span {
+      color: white;
+      font-weight: 600;
+  }
+  .product .bold-ro__product .bold-ro__radio-div [type=radio]:checked{
+    border-color:White;
+    background:transparent!important;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:before, .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:before{
+    background:transparent!important;
+  }
+  .bold-ro__radio-div.red-btn.bold-ro__bold-active span:before {
+      background: transparent!important;
+      border-color: white!important;
+  }
+  .bold-ro__radio-div.red-btn.bold-ro__bold-active span:after{
+    color:white!important;
+  }
+  .school-free-from h2, .school-shop-now h2, .school-join h2, .school-inside h2{
+    font-weight:600;
+  }
+  .testimonial.slick-slide {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      padding: 0px;
+  }
+  .school-testimonials .stars {
+    color: #ea7a64;
+   }
+  .school-testimonials .text {
+    width: 40vw;
+    text-align: right;
+    padding-right: 7vw;
+    color: #4e72c0;
+  }
+  .school-testimonials .text {
+    width: 40vw;
+    text-align: right;
+    padding-right: 7vw;
+    color: #4e72c0;
+    font-size: 1vw;
+    font-weight: 400;
+  }
+  .school-testimonials .image{
+    position:unset!important;
+  }
+  .school-testimonials .testimonials{
+    padding-bottom:0px!important;
+  }
+  .school-testimonials{
+    padding:0px!important;
+  }
+  .school-testimonials .slick-prev, .school-testimonials .slick-next{
+    bottom: 2vw!important;
+  }
+  .items.desktop .item:last-child {
+      display: none;
+  }
+  @media screen and (max-width:999px){
+    header .menu-toggle {
+        display: none;
+    }
+      header .user, header .cart .icon {
+        font-size: 7.8vw;
+        font-family: simple-line-icons;
+    }
+      .school-partnerships h2 {
+        margin-bottom: 8vw;
+        margin-top: 2vw;
+    }
+    .school-product h2{
+      text-align:center;
+    }
+    section.school-product p {
+        font-size: 3.6vw;
+    }
+    .school-testimonials .image
+    {
+      width:100%;
+    }
+    .testimonial.slick-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0px;
+    }
+    .testimonials.slick-initialized.slick-slider{
+      height:unset!important;
+    }
+    .school-testimonials .image:before{
+      background:unset!important;
+    }
+    .school-testimonials .image{
+      height:unset!important;
+    }
+    .school-testimonials .text {
+      width: auto;
+      text-align: center;
+      padding-right: 4vw!important;
+      padding-left:4vw;
+      padding-bottom:12vw;     
+      font-size: 3.6vw;
+    }
+    .school-testimonials .image img{
+      height:auto;
+    }
+    .testi-heading{
+      margin-top:0;
+      margin-bottom:0!important;
+    }
+    section.school-testimonials {
+    padding-top: 6vw!important;
+    padding-bottom: 6vw!important;
+}
+    .slick-dots .slick-active button {
+    background-color: #5074be;
+}
+    .slick-dots li button{
+      border-color:#5074be;
+    }
+  }
+  footer {
+    display: none;
+}
+</style>

@@ -1,0 +1,7 @@
+
+{% if item.selling_plan_allocation != empty and item.selling_plan_allocation.selling_plan %}
+  <br>
+  <span class="selling-plan-details" data-bsub-item-key="{{item.key}}">
+    Deliver {{item.selling_plan_allocation.selling_plan.name}}
+  </span>
+{% endif %}

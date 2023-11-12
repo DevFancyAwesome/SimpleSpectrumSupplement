@@ -1,0 +1,55 @@
+{%- include 'LS_83195002989_global' -%}
+{{ 'research.scss.css' | asset_url | stylesheet_tag }}
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1><span class="bold">{% include 'LS_83195002989_title', item: page %}{{ LS_83195002989_item_title  }}</span></h1>
+      </div>
+    </div>
+    <img src="{{ 'research-bg.jpg' | asset_url }}" alt="">
+  </section>
+  <!-- \Hero -->
+
+  {% section 'studies' %}
+
+
+<section id="subscribe-section" class="subscribe">
+    <div class="container">
+      <h2><ls-static-129870>Subscribe to the</ls-static-129870> <span class="bold"><ls-static-31862>Simple Digest</ls-static-31862></span> <ls-static-636610>& Get</ls-static-636610> <span class="bold"><ls-static-755244>10% off</ls-static-755244></span></h2>
+      <p>
+		<ls-static-96235>We’ll send you tips and resources as well as sales and promotions!</ls-static-96235>
+      </p>
+      <div class="klaviyo-form-SRqvHA"></div>
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+
+{{ 'research.js' | asset_url | script_tag }}

@@ -1,0 +1,240 @@
+.menu-toggle span {
+  background-color: #e87a68;
+}
+.hero {
+  position: relative;
+}
+.hero:after {
+  content: "";
+  position: absolute;
+  width: 36.232vw;
+  height: 36.232vw;
+  right: -7.246vw;
+  bottom: -9.662vw;
+  background: url({{ 'halloween-decor-1.png' | asset_url }});
+  z-index: 10;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.hero .slide {
+  font-size: 3.865vw;
+  color: #000000;
+  padding: 13.768vw 0;
+  line-height: 1.5;
+  height: 128.502vw;
+}
+.hero .slide h1 {
+  font-size: 6.763vw;
+  color: #000;
+  margin-bottom: 2.415vw;
+}
+.hero .content {
+  background: rgba(242, 242, 223, .75);
+  padding: 7.246vw 2.415vw 10.870vw 6.763vw;
+  position: relative;
+}
+.hero .slick-dots {
+  display: none;
+}
+.hero .btn {
+  position: absolute;
+  left: 6.763vw;
+  bottom: -5.797vw;
+}
+.btn {
+  padding-top: 3.623vw;
+}
+.bottom-bar {
+  z-index: 100000;
+}
+@media (min-width: 1000px) {
+  .hero .slide {
+    font-size: 1.302vw;
+    padding: 2.969vw 0;
+    line-height: 1.5;
+    height: 41.406vw;
+  }
+  .hero:after {
+    bottom: -11.979vw;
+    left: 0.781vw;
+    width: 17.188vw;
+    height: 17.188vw;
+    right: auto;
+  }
+  .hero .slide h1 {
+    font-size: 3.021vw;
+    margin-top: 2.7vw;
+    margin-bottom: 1.042vw;
+  }
+  .hero .content {
+    background: none;
+    padding: 0 50.521vw 0 9.375vw;
+    width: 100%;
+  }
+  .hero .slick-dots {
+    display: none;
+  }
+  .hero .btn {
+    position: static;
+    margin-top: 1.823vw;
+  }
+  .btn {
+    padding-top: 1.3vw;
+  }
+  .hero .slide picture {
+    width: 100%;
+    height: 100%;
+  }
+}
+.halloween-subscribe-top {
+  display: none;
+}
+.school-product {
+  position: relative;
+  overflow: hidden;
+}
+.school-product:after {
+  content: "";
+  position: absolute;
+  top: -5.556vw;
+  right: -3.623vw;
+  width: 66.667vw;
+  height: 67.874vw;
+  background: url({{ 'halloween-decor-2-mobile.png' | asset_url }});
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+.school-free-from.halloween {
+  background-color: #4e72c0;
+  position: relative;
+  padding-top: 23vw;
+}
+.school-free-from.halloween:after {
+  content: "";
+  position: absolute;
+  top: -5.556vw;
+  left: 33.816vw;
+  width: 32.609vw;
+  height: 32.609vw;
+  background: url({{ 'halloween-decor-3.png' | asset_url }});
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.school-free-from h2 {
+  margin-bottom: 10vw;
+}
+.school-shop-now picture:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+}
+.school-shop-now .container {
+  width: 84.541vw;
+}
+.school-subscribe h2 {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.school-subscribe.bottom {
+  position: relative;
+}
+.school-subscribe.bottom:after {
+  content: "";
+  position: absolute;
+  bottom: -16.425vw;
+  left: 1.208vw;
+  width: 28.986vw;
+  height: 28.986vw;
+  background: url({{ 'halloween-decor-4.png' | asset_url }});
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+    .school-free-from h2 {
+      margin-top: 0;
+      margin-bottom: 3vw;
+    }
+@media (min-width: 1000px) {
+  .halloween-subscribe-top {
+    display: block;
+  }
+  .school-subscribe {
+    padding: 2.135vw 0 1.927vw;
+    position: relative;
+    z-index: 5;
+  }
+  .school-subscribe h2 {
+    font-size: 1.615vw;
+    margin: 0;
+  }
+  .school-subscribe .text {
+    width: 46.094vw;
+    padding-left: 8.958vw;
+  }
+  .school-subscribe form input {
+    border-radius: 0 !important;
+    width: 20.729vw !important;
+    margin-right: 1.042vw !important;
+  }
+  .school-subscribe button {
+    background-color: #000000 !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  .school-product:after {
+    top: -4.458vw;
+    right: -2.604vw;
+    width: 27.5vw;
+    height: 22.813vw;
+    background-image: url({{ 'halloween-decor-2.png' | asset_url }});
+  }
+  .school-free-from.halloween {
+    padding-top: 7.8vw;
+    padding-bottom: 3.8vw;
+  }
+  .school-free-from.halloween:after {
+    top: -3.385vw;
+    left: 4.167vw;
+    width: 19.271vw;
+    height: 19.271vw;
+  }
+  .school-free-from h2 {
+    margin-bottom: 5vw;
+  }
+  .school-free-from .item {
+    margin-bottom: 4.2vw;
+  }
+  .school-shop-now .container {
+    width: 51.042vw;
+    font-size: 1.510vw;
+  }
+  .school-subscribe.bottom:after {
+    bottom: -4.844vw;
+    left: 4.167vw;
+    width: 15.104vw;
+    height: 15.104vw;
+  }
+  .school-join {
+    padding: 3.646vw 0 5vw;
+  }
+  .school-inside .slick-track {
+    display: flex !important;
+    align-items: stretch;
+  }
+  .school-inside .slick-slide {
+    height: auto !important;
+  }
+
+    .klaviyo-form-RLqspJ form > div {
+      flex-direction: row !important;
+    }
+
+      .school-product {
+        padding: 4.5vw 0 6.927vw;
+      }
+}

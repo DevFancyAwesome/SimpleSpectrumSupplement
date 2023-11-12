@@ -1,0 +1,732 @@
+.menu-toggle span {
+  background-color: #4e72c0;
+}
+.hero {
+  position: relative;
+}
+.hero:after {
+  content: "";
+  position: absolute;
+  width: 36.232vw;
+  height: 36.232vw;
+  right: -7.246vw;
+  bottom: -9.662vw;
+  background: url({{ '' | asset_url }});
+  z-index: 10;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.hero .slide {
+  font-size: 3.865vw;
+  color: #000000;
+  padding: 13.768vw 0;
+  line-height: 1.5;
+  height: 128.502vw;
+}
+.hero .slide h1 {
+  font-size: 6.763vw;
+  color: #FFFFFF;
+  margin-bottom: 2.415vw;
+}
+.hero .content {
+  background: rgba(242, 242, 223, .75);
+  padding: 7.246vw 2.415vw 10.870vw 6.763vw;
+  position: relative;
+  color: #FFFFFF;
+}
+.hero .slick-dots {
+  display: none;
+}
+.hero .btn {
+  position: absolute;
+  left: 6.763vw;
+  bottom: -5.797vw;
+  font-size:1.0416;
+  padding: 1.254vw 2.96vw 0;
+ font-weight:500;
+}
+.new-year {
+    position: relative;
+  }
+.school-shop-now {
+    position: relative;
+}
+
+@media(max-width: 850px) {
+    .school-shop-now:after {
+        content: '';
+        width: 26vw;
+        height: 100%;
+        position: absolute;
+        left: 14vh;
+        z-index: 1; 
+        bottom: 34vw; 
+      }
+}
+
+@media(max-width: 800px) {
+    .school-shop-now:after {
+        content: "";
+        position: absolute;
+        width: 76.232vw;
+        height: 197.232vw;
+        right: 13.246vw;
+        bottom: 35.662vw;
+        z-index: -5;
+        background-image: url(https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Layer_1.png?v=1639158741);
+        background-size: contain;
+        background-repeat: no-repeat;    
+    }
+    .new-year:after {
+        content: "";
+        position: absolute;
+        width: 29.232vw;
+        height: 87.232vw;
+        right: 5.246vw;
+        bottom: 30.662vw;
+        z-index: 1;
+        background-image: url(https://cdn.shopify.com/s/files/1/0036/1820/9901/files/supplement.png?v=1639156164);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+@media(min-width: 1000px) {
+    .school-shop-now:after {
+        content: "";
+        position: absolute;
+        width: 76.232vw;
+        height: 197.232vw;
+        right: 13.246vw;
+        bottom: 35.662vw;
+        background-image: url(https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Layer_1.png?v=1639158741);
+        background-size: contain;
+        background-repeat: no-repeat;    
+    }
+    .new-year:after {
+        content: "";
+        position: absolute;
+        width: 29.232vw;
+        height: 87.232vw;
+        right: 5.246vw;
+        bottom: 30.662vw;
+        z-index: 1;
+        background-image: url(https://cdn.shopify.com/s/files/1/0036/1820/9901/files/supplement.png?v=1639156164);
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+}
+  .new-year .voice {
+    font-size: 3.865vw;
+    color: #000000;
+    padding: 13.768vw 0;
+    line-height: 1.5;
+    height: 166.502vw;
+  }
+  .new-year .voice h1 {
+    font-size: 6.763vw;
+    color: #000000;
+    margin-bottom: 2.415vw;
+  }
+  
+  .new-year .content {
+    background: rgba(242, 242, 223, .75);
+    padding: 7.246vw 2.415vw 10.870vw 6.763vw;
+    position: relative;
+    color: #000000;
+  }
+  .new-year .slick-dots {
+    display: none;
+  }
+  .new-year .btn {
+    position: absolute;
+    left: 6.763vw;
+    bottom: -5.797vw;
+    font-size:1.0416;
+    padding: 1.254vw 2.96vw 0;
+   font-weight:500;
+  }
+
+.btn {
+  padding-top: 3.623vw;
+}
+.bottom-bar {
+  z-index: 100000;
+}
+@media (min-width: 1000px) {
+  .hero .slide {
+    font-size: 1.302vw;
+    padding: 2.969vw 0;
+    line-height: 1.5;
+    height: 35.406vw;
+  }
+  .hero:after {
+    bottom: -11.979vw;
+    left: 0.781vw;
+    width: 17.188vw;
+    height: 17.188vw;
+    right: auto;
+  }
+  .hero .slide h1 {
+    font-size: 2.76vw;
+    margin-top: 2.7vw;
+    margin-bottom: 1.042vw;
+  font-weight:600;
+  }
+  .hero .content {
+    background: none;
+    padding: 0 50.521vw 0 9.375vw;
+    width: 100%;
+  }
+  .hero .slick-dots {
+    display: none;
+  }
+  .hero .btn {
+    position: static;
+    margin-top: 1.823vw;
+  }
+  .btn {
+    padding-top: 1.3vw;
+  }
+  .hero .slide picture {
+    width: 80%;
+    height: 100%;
+    align: right;
+  }
+  .new-year .voice {
+    font-size: 1.302vw;
+    padding: 2.969vw 0;
+    line-height: 1.5;
+    height: 35.406vw;
+  }
+  .new-year:after {
+    bottom: -1.978999999992vw;
+    left: 39.781vw;
+    z-index: 5;
+    width: 13.18799999999999vw;
+    height: 17.188vw;
+  }
+  .new-year .voice h1 {
+    font-size: 2.76vw;
+    margin-top: 6.7vw;
+    margin-bottom: 1.042vw;
+    font-weight:350;
+  }
+  .new-year .content {
+    background: none;
+    padding: 0 53.521vw 0 9.375vw;
+    width: 100%;
+  }
+  .new-year .slick-dots {
+    display: none;
+  }
+  .new-year .btn {
+    position: relative;
+    bottom: -1vw;
+    margin-top: 1.823vw;
+  }
+  .btn {
+    padding-top: 1.3vw;
+  }
+  .new-year .voice picture {
+    width: 53vw;
+    height: 36vw;
+    align: right;
+  }
+@media (max-width: 850px) {
+  section.school-shop-now picture:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100vw;
+    background: linear-gradient(to right, #313131 0, #313131 31%, #00f0 50%)!important;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+  }
+}
+  .school-shop-now picture img {
+    position: relative;
+    left: -3vw;
+    width: 65%
+  }
+  .school-testimonials .testimonials{
+  	padding-bottom: 10.688vw;
+  }
+  .school-testimonials .image {
+    width: 49.594vw;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    height: 37.813vw;
+  }
+  .testimonial .image:before {
+    background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(9,9,121,0) 40%, rgba(255,255,255,1) 90%);
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    content: '';
+    height: 100%;
+    width: 100%;
+  }
+  .school-testimonials .testimonial .text{
+    padding-left:35vw;
+  }
+  .school-testimonials .slick-next {
+    right: 45vw;
+  }
+  .school-testimonials .slick-next, .school-testimonials .slick-prev {
+    bottom: 6.5vw;
+    padding-left: 6.5vw;
+  }
+  .school-inside h2{
+  	font-weight:bold;
+  }
+  
+  
+  section.school-subscribe.bottom .container, section.school-subscribe.top .container {
+    background-repeat: no-repeat;
+    background-size: 3.8em;
+    background-position: 2vw center;
+	padding: 2.135vw 0;
+  }
+}
+.kl-private-reset-css-Xuajs1.kl-private-quill-wrapper-Lkqws1 {
+    display: none;
+}
+.needsclick.kl-private-reset-css-Xuajs1 div:nth-child(2) div:first-child {
+    display: none!important;
+}
+form.needsclick.klaviyo-form.klaviyo-form-version-cid_1.kl-private-reset-css-Xuajs1 > div:first-of-type {
+    flex-direction: row!important;
+}
+section.school-join h2 {
+    color: #4e72c0;
+    font-weight: bold;
+}
+.holiday-subscribe-top {
+  display: none;
+}
+.school-product {
+  position: relative;
+  overflow: hidden;
+}
+.school-product:after {
+  content: "";
+  position: absolute;
+  top: -5.556vw;
+  right: -3.623vw;
+  width: 66.667vw;
+  height: 67.874vw;
+  background: url({{ '' | asset_url }});
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+.school-free-from.holiday {
+  background-color: #4e72c0;
+  position: relative;
+  padding-top: 23vw;
+}
+.school-free-from.holiday:after {
+  content: "";
+  position: absolute;
+  top: -5.556vw;
+  left: 33.816vw;
+  width: 32.609vw;
+  height: 32.609vw;
+  background: url({{ '' | asset_url }});
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.school-free-from h2 {
+  margin-bottom: 10vw;
+}
+@media (max-width: 850px) {
+    .school-shop-now picture:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    }
+}
+.school-shop-now .container {
+  width: 84.541vw!important;
+}
+
+.school-shop-now .container h2{
+text-align:left;
+font-size:2.60vw;
+}
+
+
+.school-subscribe h2 {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+.school-subscribe.bottom {
+  position: relative;
+}
+.school-subscribe.bottom:after {
+  content: "";
+  position: absolute;
+  bottom: -16.425vw;
+  left: 1.208vw;
+  width: 28.986vw;
+  height: 28.986vw;
+  background: url({{ '' | asset_url }});
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+ section.school-partnerships h2 {
+    color: #4e72c0;
+    font-weight: bold;
+
+  }
+@media (min-width: 1000px) {
+  .hero .slide:after {
+    content: '';
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(to right, #000000 0, #000000 21%, #00f0 50%)!important;
+    left: 0vh;
+    z-index: 1;
+  }
+  .new-year .voice:after {
+    content: '';
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    left: 0vh;
+    z-index: 1;
+  }
+  .school-shop-now:after {
+    content: '';
+    width: 28vw;
+    height: 100%;
+    position: absolute;
+    left: 18vh;
+    bottom: 33vw;
+    z-index: 1;  
+  }
+  .school-product .ro_widget {
+    display: block!important;
+    width: 100%!important;
+    float: left;
+  }
+  section.school-partnerships h2 {
+    color: #4e72c0;
+    font-weight: bold;
+    font-size: 2.60vw;
+  }
+
+  .holiday-subscribe-top {
+    display: block;
+  }
+  .school-subscribe {
+    padding: 0;
+    position: relative;
+    z-index: 5;
+  }
+  .school-subscribe h2 {
+    font-size: 1.515vw;
+    margin: 0;
+    text-align:left;
+  }
+  .school-subscribe .text {
+    width: 46.094vw;
+    padding-left: 8.958vw;
+  }
+  .school-subscribe form input {
+    border-radius: 0 !important;
+    width: 20.729vw !important;
+    margin-right: 1.042vw !important;
+  }
+  .school-subscribe button {
+    background-color: #000000 !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  .school-product:after {
+    top: -1.458vw;
+    right: -2.604vw;
+    width: 27.5vw;
+    height: 22.813vw;
+    background-image: url({{ '' | asset_url }});
+  }
+  .school-free-from.holiday {
+    padding-top: 7.8vw;
+    padding-bottom: 3.8vw;
+  }
+  .school-free-from.holiday:after {
+    top: -3.385vw;
+    left: 4.167vw;
+    width: 19.271vw;
+    height: 19.271vw;
+  }
+  .school-free-from h2 {
+    margin-bottom: 5vw;
+    margin-top:0;
+    font-weight: bold;
+    
+    line-height: 1em;
+  }
+  .school-free-from .item {
+    margin-bottom: 4.2vw;
+  }
+  .school-shop-now .container {
+    font-size: 1.30vw;
+    text-align: left;
+    padding-left: 51vw;
+    z-index: 5;
+  }
+
+  .school-subscribe.bottom:after {
+    bottom: -4.844vw;
+    left: 4.167vw;
+    width: 15.104vw;
+    height: 15.104vw;
+  }
+  .school-join {
+    padding: 3.646vw 0 5vw;
+  }
+  .school-inside .slick-track {
+    display: flex !important;
+    align-items: stretch;
+  }
+  .school-inside .slick-slide {
+    height: auto !important;
+  }
+  .slick-slider .slick-prev {
+    z-index:1;
+  }
+
+  .school-inside h2{
+    margin-top:0px!important;
+  }
+  .school-inside .slide{
+    padding-bottom:0.5vw;
+  }
+  section.school-join h2 {
+    margin-top: 0px;
+  }
+}
+
+.always-free{
+margin-top: 0.5vw;
+line-height: 1.0;
+font-weight:600;
+}
+
+section.school-free-from.halloween {
+    background-image: url('https://cdn.shopify.com/s/files/1/0036/1820/9901/files/shutterstock_1507505300_3.jpg?v=1637143232');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.school-shop-now .btn{
+  padding: 1.254vw 2.96vw 0;
+  font-weight: 500;
+  font-size: 1.0416vw;
+}
+
+
+section.school-testimonials {
+  padding: 0px!important; 
+}
+
+.school-testimonials .stars{
+  padding-top : 7.387vw;
+  margin-bottom: -1.177vw;
+  color: #EA7A64;
+}
+
+.school-testimonials p{
+  color:#4E72C0;
+}
+.author{
+  color:#4E72C0;
+  font-weight:bold
+}
+
+
+  
+/* div#shopify-section-holiday-always-free:before {
+ content: '';
+    width: 100vw;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(to left, #4e72c0 0, #4e72c0 54%, #00f0 131%)!important;
+    left: 0vh;
+    z-index: 1;
+}  */
+
+/* Mobile */
+@media screen and (max-width:767px){
+  .hero .content{
+    background:none;
+  }
+
+  .new-year .content {
+    background:none;
+  }
+
+  .hero .btn {
+
+    padding: 3.1vw 5.96vw 0!important;
+
+  }
+
+  .new-year .btn {
+    left: 33.763vw;
+    padding: 3.1vw 5.96vw 0!important;
+
+  }
+
+  .school-shop-now .container h2{
+    text-align:center;
+    font-size: 6.6vw;
+  }
+
+  p.para{
+    font-size: 1.0716vw;
+  }
+
+  .school-shop-now .btn {
+    padding: 3.254vw 6.96vw 0;
+    font-weight: 500;
+    font-size: 3.14vw;
+  }
+
+  .school-testimonials{
+    padding:50px 0px;
+
+  }
+  section.school-subscribe.top {
+    display: none;
+  }
+}
+.holiday-product .row {
+  display: flex;
+  align-items: center;
+  align-content: flex-start;
+  flex-direction: row;
+}
+.klaviyo-form-RemUJ2.klaviyo-form.form-version-cid-1 {
+  width: 30vw;
+}
+
+
+@media screen and (min-width:1000px){
+  .school-partnerships{
+    padding-top:0.5vw!important;
+  }
+  .school-partnerships h2 {
+    margin-bottom: 1.64vw;
+  }
+  .school-product img {
+    width: 23.542vw;
+    margin: 0 2.833vw 0 0;
+  }
+  .school-product .text {
+    width: 40.156vw;
+  }
+  section.holiday-product.school-product h3 {
+    line-height: 1.2;
+  }
+  .school-product {
+    padding: 2.5vw 0 3.5vw;
+  }
+  .school-product img{
+    width:36vw;
+    padding:5vw 6vw;
+  }
+} .bottom-bar{
+  	display:none!important;
+  }
+
+.holiday-product .product .selection {
+    margin-bottom: 1.5vw!important;
+  margin-top:1.5vw!important;
+}
+
+.number{
+      margin-bottom: 1vw!important;
+}
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 0!important;
+}
+.numBox {
+    display: inline-block;
+    border: 2px solid #ea7a64;
+}
+#AddToCartForm .number input[type="number"]{
+border:none!important;
+}
+.numBox span {
+    color: #4e72bf;
+    font-weight: bold;
+    padding: 5px;
+    cursor:pointer;
+}
+#AddToCartForm .number input[type="number"]{
+	text-indent:1vw;
+  width:7vw!important;
+}
+@media screen and (min-width:1000px){
+
+  .bold-ro__product{
+  	margin-bottom:1.5vw!important;
+  }
+  section.school-subscribe.bottom form > div:first-child {
+    display: flex;
+    flex-direction: row!important;
+  }
+  .partners .slick-list.draggable, .slider-inside .slick-list.draggable{
+    overflow: hidden;
+  }
+}
+@media screen and (max-width:999px){
+  .holiday-product .product .selection {
+    margin-bottom: 3vw!important;
+    margin-top:1.5vw!important;
+  }
+.holiday-product .row.product {
+    display: block!important;
+}
+  .bold-ro__product .bold-ro__radio-div{
+  	width:100%;
+  }
+}
+
+@media screen and (max-width:768px){
+.holiday-product .row.product {
+    display: block!important;
+}
+  .bold-ro__product .bold-ro__radio-div{
+  	width:100%!important;
+  }
+  #AddToCartForm .number input[type="number"]{
+  	border-radius:0px!important;
+  }
+}
+@media (min-width: 1000px) {
+    section.school-shop-now picture:before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100vw;
+      background: linear-gradient(to left,  #4e72c0 0,  #4e72c0 45%, #00f0 90%)!important;
+      left: 0px;
+      top: 0px;
+      z-index: 3;
+    }
+
+    .school-shop-now .btn {
+        background-color: #e87a68;
+    }
+  }

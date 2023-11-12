@@ -1,0 +1,106 @@
+<section class="school-free-from halloween">
+  <div class="container">
+    <h3>{{ section.settings.subtitle }}</h3>
+    <h2>{{ section.settings.title }}</h2>
+    <div class="items mobile">
+      {% for block in section.blocks %}
+        {% assign mod = forloop.index | modulo: 2 %}
+        {% if mod == 1 %}
+      	  <div class="column">
+        {% endif %}
+            <div class="item"><span>{{ block.settings.text }}</span></div>
+        {% if mod == 0 %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="items desktop">
+      {% for block in section.blocks %}
+        <div class="item"><span>{{ block.settings.text }}</span></div>
+      {% endfor %}
+    </div>
+  </div>
+  <picture>
+    {% if section.settings.image_mobile != blank %}
+        <source media="(max-width: 1000px)" srcset="{{ section.settings.image_mobile  | img_url: 'master' }}">
+        <img src="{{ section.settings.image  | img_url: 'master' }}" alt="">
+    {% endif %}
+  </picture>
+</section>
+<style type="text/css">
+  @media screen and (max-width:768px){
+    .school-free-from h2 {
+      margin-top: 0;
+    }
+    .school-free-from h2 {
+      margin-bottom: 8vw;
+      font-weight: bold;
+    }
+    .school-free-from {
+      background-color: #4e72c0;
+      box-shadow: 0 0 12.077vw rgb(0 0 0 / 20%);
+      position: relative;
+      color: #fff;
+      padding: 12.54vw  0 12.54vw;
+    }
+    section.school-free-from.halloween {
+      background-position: -25vw;
+    }
+    section.school-free-from.halloween:after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg, rgb(78 114 192 / 67%) 0%, rgba(78,114,192,0.773546918767507) 46%, rgba(255,255,255,0) 90%);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+    }
+  }
+</style>
+{% schema %}
+  {
+    "name": "Always Free From",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "image"
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "image mobile"
+      },
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Subtitle"
+      },
+      { 
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

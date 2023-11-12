@@ -1,0 +1,35 @@
+<section class="bundle-banner">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    <a href="{{ section.settings.link }}" class="btn blue-btn">{{ section.settings.link_text}}</a>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Banner",
+    "settings": [
+      {
+        "id": "title",
+        "type": "html",
+        "label": "Title"
+      },
+      {
+        "id": "link",
+        "type": "url",
+        "label": "Link URL"
+      },
+      {
+        "id": "link_text",
+        "type": "text",
+        "label": "Link text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

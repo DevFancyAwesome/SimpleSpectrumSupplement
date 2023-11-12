@@ -1,0 +1,60 @@
+<section class="school-free-from halloween">
+  <div class="container">
+    <h3>{{ section.settings.subtitle }}</h3>
+    <h2>{{ section.settings.title }}</h2>
+    <div class="items mobile">
+      {% for block in section.blocks %}
+        {% assign mod = forloop.index | modulo: 2 %}
+        {% if mod == 1 %}
+      	  <div class="column">
+        {% endif %}
+            <div class="item"><span>{{ block.settings.text }}</span></div>
+        {% if mod == 0 %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="items desktop">
+      {% for block in section.blocks %}
+        <div class="item"><span>{{ block.settings.text }}</span></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Always Free From",
+    "settings": [
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Subtitle"
+      },
+      { 
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "id": "text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

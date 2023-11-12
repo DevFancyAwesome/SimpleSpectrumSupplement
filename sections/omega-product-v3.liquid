@@ -1,0 +1,218 @@
+<section class="shop-section omega-shop" id="shop-section">
+  <div class="container">
+    <div class="show-row">
+      <div class="image-slider">
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+            <div class="image">
+              <img src="{{ block.settings.image  | img_url: 'master' }}" alt="">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="text">
+        <h2>{{ section.settings.title }}</h2>
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        {{ section.settings.text }}
+
+        <form
+          action="/cart/add"
+          method="post"
+          enctype="multipart/form-data"
+          id="AddToCartForm"
+          class="product">
+          <input type="hidden" name="return_to" value="/{% if request.locale.iso_code != 'en' %}{{ request.locale.iso_code }}/{% endif %}cart"/>
+          
+          <div class="selection">
+            <div class="select">
+              {% for variant in product.variants limit: 1 %}
+                {% if variant.available %}
+                  <div class="active" data-id="{{ variant.id }}">{{ variant.title }} -
+                    {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}
+                      {% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}
+                    {% else %}
+                      {{ variant.price | money_with_currency }}{% endif %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+              <ul>
+                {% assign count = 0 %}
+                {% for variant in product.variants %}
+                  {% assign count = count | plus: 1 %}
+                  {% if variant.available and count > 1 and variant.id != 31811981508717 %}
+                    <li data-id="{{ variant.id }}">{{ variant.title }} -
+                      {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}
+                        {% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}
+                      {% else %}
+                        {{ variant.price | money_with_currency }}{% endif %}
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <select
+              name="id"
+              id="productSelect"
+              style="display:none;">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option value="{{ variant.id }}">
+                    {{ variant.title }} -
+                    {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}
+                      {% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}
+                    {% else %}
+                      {{ variant.price | money_with_currency }}{% endif %}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }}
+                    <ls-static-4171754>- sold out</ls-static-4171754>
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="ro_widget" style="">
+            <div class="bold-ro__product bold-ro__product-id-1673605611629">
+      
+            <div class="bold-ro__radio-div bold-ro__one-time-div ">
+                <label class="bold-ro__recurring-lbl">
+                    <input type="radio" name="bold-ro__selector_radio_button" class="bold-ro__one-time-radio-btn">
+                    <span class="bold-ro__one-time-purchase">
+                        One-time purchase
+                    </span>
+                </label>
+            </div>
+            <div class="bold-ro__radio-div bold-ro__recurring-div bold-ro__bold-active bold-ro__sub">
+                <label class="bold-ro__recurring-lbl">
+                <input name="bold-ro__selector_radio_button" data-bold-recurring="" class="bold-ro__mixed-radio-btn bold-ro__subscribe-radio-btn" type="radio" checked="">
+                <span class="bold-ro__recurring-text ">
+                  Subscribe &amp; Save <span class="bold-ro__initial-discount-percent"></span> (<span class="bold-ro__initial-discount-price"></span>) 
+                </span>
+                </label>
+                
+              <div class="bold-ro__frequency-div">
+                  <div class="bold-ro__frequency-label">
+                  <div class="bold-ro__order-interval-container">
+                      <span id="bold-ro__order-interval-label" class="bold-ro__order-interval-lbl">Deliver every</span>            
+                      <select class="bold-ro__frequency-num" aria-labelledby="bold-ro__order-interval-label">
+                              <option data-frequency-num="1" value="1">1</option>
+                              <option data-frequency-num="2" value="2">2</option>
+                              <option data-frequency-num="3" value="3">3</option>
+                              <option data-frequency-num="4" value="4">4</option>
+                              <option data-frequency-num="5" value="5">5</option>
+                              <option data-frequency-num="6" value="6">6</option>
+                      </select>
+                      <select class="bold-ro__frequency-type bold-ro__order-interval" aria-labelledby="bold-ro__order-interval-label">
+                              <option data-frequency-type="3" data-frequency-type-text="Month(s)" value="3">Month(s)</option>
+                      </select>
+                  </div>        
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div id="bold-widget" style="display: none !important;">
+            {% render 'bsub-widget', product: product %}
+          </div>
+          {% include 'LS_83195002989_options', product: product %}
+           {% for variant in product.variants limit: 1 %}
+                {% if variant.available %}
+    <button type="submit" name="add" id="AddToCart" class="btn yellow-btn addtocart"><ls-static-3987961>add to cart</ls-static-3987961></button>
+           <span class="qtyNotice" style="display:none"><ls-static-958984>Max quantity allowed is</ls-static-958984> <b>2</b></span>
+            {% else %}
+                    <h3 id="out-stock_text"><ls-static-162660>Out of Stock</ls-static-162660></h3>
+                {% endif %}
+              {% endfor %}
+        </form>
+
+        {% if section.settings.note != blank %}
+          <div class="note">
+            {{ section.settings.note }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function() {
+    var i = setInterval(function() {
+      if ($('.ro_widget').length && $('#bold-widget').length) {
+        clearInterval(i);
+        var discount = $('.bsub-widget__group-discount-summary').text().replace('(Save ', '').replace(')', '');
+        var price = $('.bsub-widget__plan-pricing span[data-bsub-per-delivery-price]').text();
+        $('.bold-ro__initial-discount-percent').text(discount);
+        $('.bold-ro__initial-discount-price').text(price);
+        
+        if ($('.ro_widget .bold-ro__one-time-radio-btn').is(':checked')) {
+          $('#bold-widget input[name="bsub-selling-plan-group"][value="once"]').click();
+        }
+    
+        if ($('.ro_widget .bold-ro__subscribe-radio-btn').is(':checked')) {
+          $('#bold-widget input[name="bsub-selling-plan-group"]:not([value="once"])').click();
+        }
+      }
+    }, 500);
+      
+      $('.ro_widget .bold-ro__one-time-radio-btn').change(function(e) {
+        if ($(this).is(':checked')) {
+          $('#bold-widget input[name="bsub-selling-plan-group"][value="once"]').click();
+        }
+      });
+      
+      $('.ro_widget .bold-ro__subscribe-radio-btn').change(function(e) {
+        if ($(this).is(':checked')) {
+          $('#bold-widget input[name="bsub-selling-plan-group"]:not([value="once"])').click();
+        }
+      });
+  })
+</script>
+
+<style>
+  .omega-shop .ro_widget {
+    display: block;
+  }
+</style>
+
+
+{% schema %}
+  {
+    "name": "Shop",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }, {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      }, {
+        "id": "note",
+        "type": "html",
+        "label": "Note"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

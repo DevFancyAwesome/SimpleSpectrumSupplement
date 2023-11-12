@@ -1,0 +1,295 @@
+{% assign product = section.settings.product %}
+
+<section class="holiday-product school-product">
+  <div class="container">
+    <img src="{{ section.settings.image | img_url: 'master' }}">
+    <div class="text">
+      
+      <h2>{{ section.settings.title | replace: "Supplement", ""}}</h2>
+      <h3>{{ section.settings.subtitle }}</h3>
+      {{ section.settings.text }}
+      
+      <script>
+       
+        window.BOLD.common.Shopify.saveProduct({{ product.handle | json }}, {{ product.id | json }});
+        {%- for variant in product.variants -%} window.BOLD.common.Shopify.saveVariant({{ variant.id | json }}, {product_id: {{ product.id | json }}, product_handle: {{ product.handle | json }}, price: {{ variant.price | json }}, group_id: '{{variant.metafields.bold_rp.rp_group_id}}'}); {%- endfor -%}
+		console.log('script Output');
+      </script>
+      <div class="row product">
+       
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+          <div class="number">
+            <div class="numBox">
+            <span class="js-minus"> - </span>
+              <input type="number" value="1" min="1" name="quantity">
+            <span class="js-plus"> + </span>            
+            </div>
+            </div>
+          <div class="selection">
+            <div class="select">
+              {% for variant in product.variants limit: 1 %}
+              {% if variant.available %}
+              <div class="active" data-id="{{ variant.id }}">{{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}</div>
+              {% endif %}
+              {% endfor %}
+              
+              <ul>
+                {% assign count = 0 %}
+                {% for variant in product.variants %}
+                {% assign count = count | plus: 1 %}
+                {% if variant.available and count > 1 and variant.id != 31811981508717 %}
+                <li data-id="{{ variant.id }}">{{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}</li>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <select name="id" id="productSelect" style="display:none;">
+              {% for variant in product.variants %}
+              {% if variant.available %}
+              <option value="{{ variant.id }}">
+                {{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}
+              </option>
+              {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} <ls-static-4171754>- sold out</ls-static-4171754>
+              </option>
+              {% endif %}
+              {% endfor %}
+            </select>
+            
+          </div>
+          <div class="ro_widget"></div>
+          {% include 'LS_83195002989_options', product: product %}
+          <button type="submit" name="add" id="AddToCart" class="btn red-btn addtocart"><ls-static-2197425>add to cart</ls-static-2197425></button>
+          <span class="qtyNotice" style="display:none"><ls-static-958984>Max quantity allowed is</ls-static-958984> <b>2</b></span>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<style type="text/css">
+  .school-product .ro_widget{
+  	display:block!important;
+  }
+   .bold-ro__frequency-div{
+     display:none!important
+   }
+  .bold-ro__product .bold-ro__radio-div.bold-ro__bold-active {
+    background-color: #f9e7e4;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:before, .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -3px;
+    width: 21px;
+    height: 21px;
+    border: 2px solid #c9523b;
+    border-radius: 100%;
+    background: #f5a494;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span,  .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span {
+    position: relative;
+    padding-left: 40px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #353336;
+  } .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:after {
+    /* opacity: 0; */
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  .bold-ro__recurring-title {
+    padding-left: 0px;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:after, .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:after {
+    content: '\f00c';
+    color: #ca543e;
+    position: absolute;
+    top: -3px;
+    left: 5px;
+    font-size: 26px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+  } .bold-ro__product .bold-ro__radio-div {
+    border: 2px solid #b1b1b1;
+    height: 6vw;
+    margin: 0;
+    font-size: 2vw;
+    letter-spacing: .1vw;
+    padding: 0 2vw;
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }.bold-ro__product .bold-ro__radio-div.bold-ro__one-time-div {
+    border-bottom: none;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked, .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+  } .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -3px;
+    width: 21px;
+    height: 21px;
+    border: 2px solid #c9523b;
+    border-radius: 100%;
+    background: #f5a494;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:after,  .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:after {
+    content: '\f00c';
+    color: #ca543e;
+    position: absolute;
+    top: -3px;
+    left: 5px;
+    font-size: 26px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+  }
+  @media (min-width: 1000px){
+    .product .bold-ro__product .bold-ro__radio-div {
+      height: 3vw;
+      width: unset!important;
+      font-size: 1vw;
+    }
+    .bold-ro__product .bold-ro__radio-div {
+      height: 3vw;
+      width: unset!important;
+      font-size: 1vw;
+    }
+  }
+ 
+  .holiday-product h2{
+    text-align:left;
+    color: #4e72c0;
+  }
+  .holiday-product h3, .holiday-product p{
+    color: #4e72c0;
+  }
+  .holiday-product .bold-ro__recurring-title{
+    display:none!important;
+  }
+  .holiday-product .selection ul {
+    display: none;
+  }
+  .holiday-product .product .selection{
+  	margin-bottom:1.7vw;
+  }
+  .holiday-product .select {
+    color: #4f72c0;
+  }
+  .bold-ro__radio-div.bold-ro__one-time-div.bold-ro__bold-active.red-btn, .product .bold-ro__product .bold-ro__radio-div {
+    border-top: 2px solid #4f72c0;
+    border-left: 2px solid #4f72c0;
+    border-right: 2px solid #4f72c0;
+}
+  .bold-ro__radio-div.bold-ro__recurring-div.bold-ro__sub{
+  	border:2px solid #4f72c0
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:before, .product .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:before{
+  	background:transparent;
+        border: 2px solid #ea7a64;
+  }
+  span.bold-ro__recurring-text, span.bold-ro__one-time-purchase {
+    color: #ea7a64!important;
+    font-weight: bold;
+  }
+  .bold-ro__bold-active span {
+    color: white!important;
+    font-weight: bold;
+  }
+
+  .bold-ro__bold-active {
+    background: #4e72c0!important;
+    color: white!important;
+  }
+  .bold-ro__product .bold-ro__radio-div [type=radio]:checked+span:after, .bold-ro__product .bold-ro__radio-div [type=radio]:not(:checked)+span:after {
+    content: '\f00c';
+    color: #ffffff;
+    position: absolute;
+    top: 0px;
+    left: 6px;
+    font-size: 14px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 600;
+}
+  .bold-ro__bold-active span::before {
+    border-color: white!important;
+  }
+  #AddToCartForm .number input[type="number"] {
+    width: 5vw;
+    text-align: center;
+    height: 3vw;
+    border: 2px solid #ea7a64;
+    color: #4f72c0;
+  }
+   @media screen and (max-width:768px){
+    .bold-ro__product .bold-ro__radio-div {
+      height: 10vw;
+      margin: 0;
+      width: 80vw;
+    }
+    .holiday-product h2{
+      text-align:center;
+    }
+     .holiday-product p {
+       font-size: 3.6vw;
+       font-weight: 300;
+       line-height: 1.5em;
+     }
+     #AddToCartForm .number input[type="number"] {
+       width: 15vw;
+       text-align: center;
+       height: 10vw;
+       border: 2px solid #ea7a64;
+       color: #4f72c0;
+     }
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Product",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "image"
+      },
+      { 
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "subtitle",
+        "type": "text",
+        "label": "Subtitle"
+      },
+      {
+        "id": "text",
+        "type": "richtext",
+        "label": "Text"
+      },
+      {
+        "id": "product",
+        "type": "product",
+        "label": "Product"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

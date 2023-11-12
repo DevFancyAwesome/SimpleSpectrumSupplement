@@ -1,0 +1,36 @@
+<section class="school-join">
+  <div class="container">
+    <h2>{{ section.settings.header }}</h2>
+    <div class="images">
+      {% for block in section.blocks %} 
+      <a href="https://www.instagram.com/simplespectrumsupplement"><img src="{{ block.settings.image | img_url: 'master' }}"></a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+  {% schema %}
+  {
+    "name": "Join the Conversation",
+    "settings": [
+      {
+        "id": "header",
+        "type": "html",
+        "label": "Header"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

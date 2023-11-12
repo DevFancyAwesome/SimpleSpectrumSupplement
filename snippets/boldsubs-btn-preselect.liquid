@@ -1,0 +1,39 @@
+
+<script>
+  BOLD.common.eventEmitter.enableLog();
+   
+  if(window.BOLD && window.BOLD.common && window.BOLD.common.eventEmitter && window.BOLD.recurring_orders){
+     
+    //recurring cart event emitter listener
+    BOLD.common.eventEmitter.on("BOLD_RECURRING_ORDERS_cart_widget_loaded", function(e){
+      BOLD.common.preselect_subscribe_recurring_orders_widget(e.data)
+    });
+ 
+    //single and multiple product event emitter listener
+    BOLD.common.eventEmitter.on("BOLD_RECURRING_ORDERS_widget_loaded",function(e){
+      BOLD.common.preselect_subscribe_recurring_orders_widget(e.data.form);
+    });
+ 
+    //function added to bold common scope, requires an element higher in hierarchy than the subscribe div
+    BOLD.common.preselect_subscribe_recurring_orders_widget =  function (e){
+      setTimeout(function(){
+        var btn;
+ 
+        //recurring_cart: 0, single_product: 1, mixed_cart: 2
+        //if in recurring cart
+        if(BOLD.recurring_orders.modes.current_mode == 0){
+          btn = e.querySelector('.bold-ro__recurring-div .bold-ro__recurring-radio-btn');
+        }
+        //if in single product or multiple product
+        else{
+          btn = e.querySelector('.bold-ro__subscribe-radio-btn');
+        }
+ 
+        //if button exists, click it, if not, do nothing
+        if(btn){
+          btn.click();
+        }
+      }, 100);
+    }
+  }
+</script>

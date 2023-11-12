@@ -1,0 +1,9 @@
+assets/*.eot
+assets/*.gif
+assets/*.png
+assets/*.jpg
+assets/*.JPEG
+assets/*.otf
+assets/*.svg
+assets/*.ttf
+assets/*.woff*

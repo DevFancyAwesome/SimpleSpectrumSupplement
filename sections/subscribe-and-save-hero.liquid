@@ -1,0 +1,100 @@
+<section class="hero subscribe-and-save">
+  <div class="hero-slider">
+    <div class="slide">
+      <picture>
+        {% if section.settings.image_mobile != blank %}
+        	<source media="(max-width: 1000px)" srcset="{{ section.settings.image_mobile  | img_url: 'master' }}">
+            <img src="{{ section.settings.image  | img_url: 'master' }}" alt="">
+        {% endif %}
+      </picture>
+      <div class="content">
+        <h1>{{ section.settings.header }}</h1>
+        {{ section.settings.text }}
+         <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=H5w3Rt"></script>
+       <!-- <div class="klaviyo-form-TJAHSe"></div>-->
+        <div id="klaviyo-sas">
+        <div class="klaviyo-form-SRqvHA"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  jQuery(document).ready(function($) {
+     var checkExist = setInterval(function () {
+        if (document.querySelectorAll('.hero.subscribe-and-save input').length) {
+            $('.hero.subscribe-and-save input').attr('placeholder','email address');
+            clearInterval(checkExist);
+            return;
+        }
+    }, 100); 
+    
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-TJAHSe input[name='email']"));
+        var inputBox = $(".klaviyo-form-TJAHSe input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-TJAHSe button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+
+{% schema %}
+  {
+    "name": "Hero",
+    "settings": [
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "image"
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "image mobile"
+      },
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header"
+      },
+      {
+        "id": "text",
+        "type": "richtext",
+        "label": "Text"
+      },
+      {
+        "id": "link",
+        "type": "url",
+        "label": "Link URL"
+      },
+      {
+        "id": "link_text",
+        "type": "text",
+        "label": "Link text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

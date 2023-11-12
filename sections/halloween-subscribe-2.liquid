@@ -1,0 +1,58 @@
+<section class="school-subscribe halloween-subscribe-top">
+  <div class="container">
+    <div class="text">
+      <h2>{{ section.settings.header }}</h2>
+      {{ section.settings.text }}
+    </div>
+    <div class="klaviyo-form-RLqspJ"></div>
+  </div>
+</section>
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RLqspJ input[name='email']"));
+        var inputBox = $(".klaviyo-form-RLqspJ input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RLqspJ button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+<style type="text/css">
+section.school-subscribe.bottom {
+  background: #ea7a64!important;
+}
+</style>
+  {% schema %}
+  {
+    "name": "Subscribe",
+    "settings": [
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header"
+      },
+      {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      }
+    ]
+  }
+{% endschema %}

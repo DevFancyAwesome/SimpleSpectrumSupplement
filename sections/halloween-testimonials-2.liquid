@@ -1,0 +1,98 @@
+
+<section class="school-testimonials">
+  <div class="container">
+    <div class="testimonials">
+    {% for block in section.blocks %}
+      <div class="testimonial">
+        <div class="image">
+          <img src="{{ block.settings.image | img_url: 'master' }}">
+        </div>
+        <div class="text">
+          <div class="stars desktop">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <h2 class="testi-heading">{{ block.settings.title }}</h2>
+          {{ block.settings.text }}
+          <div class="author">
+            {{ block.settings.author }}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+</section>
+<style type="text/css">
+ .school-testimonials .image:before {
+    background-image: url({{'frame-1.png' | asset_url}});
+    height: 45vw;
+    content: '';
+    display: block;
+    z-index: 2;
+    position: absolute;
+    background-size: cover;
+    top: -6.5vw;
+    background-repeat: no-repeat;
+    width: 52vw;
+      
+}
+      .school-testimonials .image{
+      height:35vw;
+      }
+      .school-testimonials .image img {
+    height: 500px;
+    width: 65%;
+    left: 13vw;
+    position: relative;
+}
+.testimonials.slick-initialized.slick-slider {
+    height: 35vw!important;
+}
+      .school-testimonials .image:after{
+      content:unset!Important;
+      }
+</style>
+
+{% schema %}
+  {
+    "name": "Testimonials",
+    "blocks": [
+      {
+        "type": "testimonial",
+        "name": "Testimonial",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          },
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Title"
+          },
+          {
+            "id": "text",
+            "type": "richtext",
+            "label": "Text"
+          },
+          {
+            "id": "author",
+            "type": "text",
+            "label": "Author"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

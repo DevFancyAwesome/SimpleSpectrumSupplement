@@ -1,0 +1,28 @@
+<section class="its-simple picture-bg">
+  <div class="container">
+    <h2>{{ section.settings.title }}</h2>
+    {{ section.settings.text }}
+  </div>
+  <picture class="bg">
+    <source media="(max-width: 999px)" srcset="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/3-layers.jpg?v=1678444341">
+    <img src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/bg-desktop.jpg?v=1670670113" alt="">
+  </picture>
+</section>
+
+{% schema %}
+  {
+    "name": "Its simple",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      }
+    ]
+  }
+{% endschema %}

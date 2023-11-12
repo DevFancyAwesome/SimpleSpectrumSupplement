@@ -1,0 +1,107 @@
+<section class="shop-section" id="shop">
+  <div class="container">
+    <div class="show-row">
+      <div class="image-slider">
+        {% for block in section.blocks %}
+          {% if block.settings.image != blank %}
+            <div class="image">
+              <img src="{{ block.settings.image  | img_url: 'master' }}" alt="">
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="text">
+        <div class="stars">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h2>{{ section.settings.title }}</h2>
+        {{ section.settings.text }}
+      </div>
+    </div>
+
+    {% assign product = all_products[section.settings.product] %}
+    <div class="bundle">
+      <h3>
+        <ls-static-69287>Get the bundle for</ls-static-69287>
+        <strong>
+          <ls-static-263060>20% off</ls-static-263060>
+        </strong>
+      </h3>
+      <div class="price-info">
+        <div class="products">
+          <div class="item">
+            <div class="title">
+              <ls-static-637184>Simple Spectrum Nutritional Support Supplement</ls-static-637184>
+            </div>
+            <div class="price">$49.99</div>
+          </div>
+          <div class="plus">+</div>
+          <div class="item">
+            <div class="title">
+              <ls-static-717760>Simple Spectrum Omega 3 DHA Supplement</ls-static-717760>
+            </div>
+            <div class="price">$34.99</div>
+          </div>
+        </div>
+        <div class="discount">
+          <div class="title">
+            <ls-static-378887>When you buy together</ls-static-378887>
+          </div>
+          <div class="compare-at-price">$84.98</div>
+          <div class="price">$67.48</div>
+        </div>
+      </div>
+    </div>
+
+    {% if product %}
+      <form method="post" action="/cart/add">
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.variants.first.id }}" />
+        <input
+          type="submit"
+          value="Add to cart"
+          class="btn red-btn" />
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Bundle",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      }, {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      }, {
+        "id": "product",
+        "type": "product",
+        "label": "Product"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "id": "image",
+            "type": "image_picker",
+            "label": "Image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

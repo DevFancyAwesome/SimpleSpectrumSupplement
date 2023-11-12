@@ -1,0 +1,51 @@
+{% if section.settings.desk_image%}
+<div class="section ">
+{%if section.settings.link_url%}
+  <a href="{{section.settings.link_url}}">
+{%endif%}
+  <img src="{{section.settings.desk_image | img_url:"2500x"}}" {%if section.settings.mob_image %}class="deskOnly"{%endif%}>
+  {%if section.settings.mob_image %}<img src="{{section.settings.mob_image | img_url: "1000x"}}" class="mobOnly">{%endif%}
+{%if section.settings.link_url%}</a>{%endif%}
+</div>
+<style type="text/css">
+  @media screen and (min-width:1000px){
+    .deskOnly{display:block!important}
+    .mobOnly{display:none!important}
+  }
+    .deskOnly{display:none}
+    .mobOnly{display:block}
+  
+</style>
+{%endif%}
+{% schema %}
+  {
+    "name": "Testimonial Image Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "desk_image",
+        "label": "Desktop Image"
+      },
+	  {
+        "type": "image_picker",
+        "id": "mob_image",
+        "label": "Mobile Image"
+      },
+	  {
+        "type": "url",
+        "id": "link_url",
+        "label": "Image link"
+      }
+	],
+    "presets": [{
+      "name": "Banner Image",
+      "category": "Image"
+    }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,623 @@
+{%- include 'LS_83195002989_global' -%}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org/",
+  "@type": "Product",
+"@id": {{ canonical_url | json }},
+  "name": {% include 'LS_83195002989_title', item: product %}{{ LS_83195002989_item_title | json   }},
+  "url": {{ shop.url | append: product.url | json }},
+  {%- if product.featured_image -%}
+    {%- assign image_size = product.featured_image.width | append: 'x' -%}
+    "image": [
+      {% comment ls-rpl %}{{ product.featured_image.src | img_url: image_size | prepend: "https:" | json }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: product.featured_image.src, img_url: image_size -%}{%- endcapture -%}{{ LS_IMG_URL | prepend: "https:" | json }}{% comment /ls-rpl %}{% endcomment %}
+    ],
+  {%- endif -%}
+  "description": {% include 'LS_83195002989_description', item: product %}{{ LS_83195002989_item_desc | strip_html | json   }},
+  {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+  {%- endif -%}
+  "brand": {
+    "@type": "Thing",
+    "name": {{ product.vendor | json }}
+  },
+  "offers": [
+    {%- for variant in product.variants -%}{% if variant.sku != 'SKU-SSS-006' %}
+        {
+          "@type" : "Offer",
+          {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+          "price" : {{ variant.price | divided_by: 100.00 | json }},
+          "priceCurrency" : {{ cart.currency.iso_code | json }},
+          "url" : {{ shop.url | append: variant.url | json }}
+        }{% unless forloop.last or variant.sku == 'SKU-SSS-004' %},{% endunless %}{% endif %}{%- endfor -%}
+  ]
+}
+</script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+{{ 'pdp.scss.css' | asset_url | stylesheet_tag }}
+
+  <!-- Product -->
+  <section class="product product-omega">
+    <div class="container">
+      <h1>{% include 'LS_83195002989_title', item: product %}{{ LS_83195002989_item_title  }}</h1>
+      <div class="product-image">
+        {% for image in product.images limit:1 %}
+           <img src="{% comment ls-rpl %}{{ image.src | product_img_url: 'original' }}{% endcomment %}{%- capture LS_IMG_URL -%}{%- render "ls-img-url", image: image.src, img_url: 'original' -%}{%- endcapture -%}{{ LS_IMG_URL }}{% comment /ls-rpl %}{% endcomment %}">
+        {% endfor %}
+      </div>
+      {{ product.description }}
+      <br>
+      
+        <p><ls-static-16085>Please contact customer service to purchase through one of our distributors if you are located in the Republic of Ireland, Peru, South Africa, the United Arab Emirates, Germany, or Spain.</ls-static-16085></p>
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+      <input type="hidden" name="return_to" value="/{% if request.locale.iso_code != 'en' %}{{ request.locale.iso_code }}/{% endif %}cart"/>
+      <div class="selection">
+        <div class="number" style="display: none;">
+          <input type="number" value="1" min="1" name="quantity">
+        </div>
+        <div class="select" style="display:none;">
+          {% for variant in product.variants limit: 1 %}
+            {% if variant.available %}
+              <div class="active" data-id="{{ variant.id }}">{{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money_with_currency' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money_with_currency }}{% endif %}</div>
+            {% endif %}
+          {% endfor %}
+          <ul>
+            {% assign count = 0 %}
+            {% for variant in product.variants %}
+              {% assign count = count | plus: 1 %}
+              {% if variant.available and count > 1 and variant.id != 32038355173485 %}
+                <li data-id="{{ variant.id }}">{{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money }}{% endif %}</li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+        <select name="id" id="productSelect">
+          {% for variant in product.variants %}
+            {% if variant.available %}
+              <option value="{{ variant.id }}">
+                {{ variant.title }} - {% if LS_83195002989_curr and shop.metafields.langshop['currSwitcherType'] and shop.metafields.langshop['currSwitcherType'] != "disabled" %}{% include 'LS_83195002989_curr_converter', LS_price: variant.price, LS_format: 'money' %}{{ LS_83195002989_curr_converter }}{% else %}{{ variant.price | money }}{% endif %}
+              </option>
+            {% else %}
+              <option disabled="disabled">
+                {{ variant.title }} <ls-static-8734469>- sold out</ls-static-8734469>
+              </option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div><div class="ro_widget" style="">
+            <div class="bold-ro__product bold-ro__product-id-1673605611629">
+      
+            <div class="bold-ro__radio-div bold-ro__one-time-div ">
+                <label class="bold-ro__recurring-lbl">
+                    <input type="radio" name="bold-ro__selector_radio_button" class="bold-ro__one-time-radio-btn">
+                    <span class="bold-ro__one-time-purchase">
+                        One-time purchase
+                    </span>
+                </label>
+            </div>
+            <div class="bold-ro__radio-div bold-ro__recurring-div bold-ro__bold-active bold-ro__sub">
+                <label class="bold-ro__recurring-lbl">
+                <input name="bold-ro__selector_radio_button" data-bold-recurring="" class="bold-ro__mixed-radio-btn bold-ro__subscribe-radio-btn" type="radio" checked="">
+                <span class="bold-ro__recurring-text ">
+                  Subscribe &amp; Save <span class="bold-ro__initial-discount-percent"></span> (<span class="bold-ro__initial-discount-price"></span>) 
+                </span>
+                </label>
+                
+              <div class="bold-ro__frequency-div">
+                  <div class="bold-ro__frequency-label">
+                  <div class="bold-ro__order-interval-container">
+                      <span id="bold-ro__order-interval-label" class="bold-ro__order-interval-lbl">Deliver every</span>            
+                      <select class="bold-ro__frequency-num" aria-labelledby="bold-ro__order-interval-label">
+                              <option data-frequency-num="1" value="1">1</option>
+                              <option data-frequency-num="2" value="2">2</option>
+                              <option data-frequency-num="3" value="3">3</option>
+                              <option data-frequency-num="4" value="4">4</option>
+                              <option data-frequency-num="5" value="5">5</option>
+                              <option data-frequency-num="6" value="6">6</option>
+                      </select>
+                      <select class="bold-ro__frequency-type bold-ro__order-interval" aria-labelledby="bold-ro__order-interval-label">
+                              <option data-frequency-type="3" data-frequency-type-text="Month(s)" value="3">Month(s)</option>
+                      </select>
+                  </div>        
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <div id="bold-widget" style="display: none !important;">
+            {% render 'bsub-widget', product: product %}
+          </div>
+      {% include 'LS_83195002989_options', product: product %}
+       {% for variant in product.variants limit: 1 %}
+            {% if variant.available %}
+<button type="submit" name="add" id="AddToCart" class="btn yellow-btn addtocart"><ls-static-3987961>add to cart</ls-static-3987961></button>
+       <span class="qtyNotice" style="display:none"><ls-static-958984>Max quantity allowed is</ls-static-958984> <b>2</b></span>
+        {% else %}
+                <h3 id="out-stock_text"><ls-static-162660>Out of Stock</ls-static-162660></h3>
+            {% endif %}
+          {% endfor %}
+
+    </form>
+    </div>
+  </section>
+  <!-- \Product -->
+
+  <section class="product-details">
+	<div class="container">
+      <h2><ls-static-51922>Product Details</ls-static-51922></h2>
+      <p>
+        <ls-static-403475>Simple Spectrum Omega 3 DHA supplement is designed for cognitive support for the developing brain and nervous system. Recent clinical research suggest that DHA is critically important for numerous bodily functions, especially inflammation.</ls-static-403475>
+      </p>
+      <div class="product-details-cards">
+        <div class="card">
+          <div class="icon">
+            <img src="{{'detail-1.png' | asset_url}}">
+          </div>
+          <div class="text">
+            <ls-static-787361>1200 mg total</ls-static-787361> <br> <ls-static-492697>Omega 3s</ls-static-492697> <br> <ls-static-854799>per serving</ls-static-854799>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <img src="{{'detail-2.png' | asset_url}}">
+          </div>
+          <div class="text">
+            <ls-static-228287>Supports cognition, memory, and</ls-static-228287> <br> <ls-static-640589>emotional well-being</ls-static-640589>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <img src="{{'detail-3.png' | asset_url}}">
+          </div>
+          <div class="text">
+            <ls-static-816906>Delightful natural</ls-static-816906> <br> <ls-static-430596>Orange flavor, sweetened with monk fruit</ls-static-430596>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon">
+            <img src="{{'detail-4.png' | asset_url}}">
+          </div>
+          <div class="text">
+            <ls-static-863453>Soy Free, Nut Free,</ls-static-863453> <br> <ls-static-595517>Dairy Free, Gluten Free, No GMOs</ls-static-595517>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bundle and Save -->
+  <section class="bundle-save bundle-save-omega">
+    <div class="container">
+      <h2><ls-static-4084564>Bundle + Save</ls-static-4084564></h2>
+      <p>
+        <ls-static-9899996>Our DHA supplement contains the Simple Spectrum fish oil formula to support developing brains in children. So why not stock up and save money?</ls-static-9899996>
+      </p>
+    </div>
+
+    <div class="products">
+      <div class="product-item">
+        <div class="product-image">
+          <img src="{{'omega_single_bottle.png' | asset_url}}" alt="Single Bottle">
+        </div>
+
+        <h3><ls-static-1858754>Buy One</ls-static-1858754></h3>
+        <span class="servings"><ls-static-5201311>30 servings</ls-static-5201311></span>
+        <span class="savings"></span>
+        <span class="price">$34.99</span>
+        <button class="btn yellow-btn purchase-btn one-omega-bottle" data-id="38054112526513"><ls-static-1731080>add to cart</ls-static-1731080></button>
+      </div>
+
+      <div class="product-item popular">
+        <div class="product-image">
+          <img src="{{ 'omega_two_bottles.png' | asset_url }}" alt="Two Bottle">
+        </div>
+
+        <h3><ls-static-3060933>Buy Two</ls-static-3060933></h3>
+        <span class="servings"><ls-static-3957739>60 servings</ls-static-3957739></span>
+        <span class="savings"><ls-static-5349885>15% savings</ls-static-5349885></span>
+        <span class="price">$59.50</span>
+        <button class="btn yellow-btn purchase-btn two-omega-bottle" data-id="38054112559281"><ls-static-2890774>add to cart</ls-static-2890774></button>
+      </div>
+
+      <div class="product-item">
+        <div class="product-image">
+          <img src="{{ 'omega_four_bottles.png' | asset_url }}" alt="Four Bottle">
+        </div>
+
+        <h3><ls-static-4816395>Buy Four</ls-static-4816395></h3>
+        <span class="servings"><ls-static-7062202>120 servings</ls-static-7062202></span>
+        <span class="savings"><ls-static-9673638>20% savings</ls-static-9673638></span>
+        <span class="price">$111.99</span>
+        <button class="btn yellow-btn purchase-btn four-omega-bottle" data-id="38054112592049"><ls-static-7113938>add to cart</ls-static-7113938></button>
+      </div>
+    </div>
+  </section>
+  <!-- \Bundle and Save -->
+
+  <section class="inside-omegas">
+    <div class="container">
+      <h2><ls-static-12759>Inside</ls-static-12759> <strong><ls-static-383468>Omegas</ls-static-383468></strong></h2>
+      <p>
+        <ls-static-53147>Omega 3 fatty acids are a type of fat that is essential for the body, which means the body cannot make it on its own and it is needed from the diet. Simple Spectrum Omega 3 DHA supplement is made with the triglyceride form, which are more easily absorbed and more stable.</ls-static-53147>
+      </p>
+      <div class="cards">
+        <div class="card">
+          <div class="title"><ls-static-757716>Docosahexaenoic Acid (DHA)</ls-static-757716></div>
+          <div class="text"><ls-static-568364>Supports brain health, mood, and anti-inflammatory</ls-static-568364></div>
+        </div>
+        <div class="card">
+          <div class="title"><ls-static-976090>Eicosapentaenoic Acid (EPA)</ls-static-976090></div>
+          <div class="text"><ls-static-150506>Supports brain health, mood, and anti-inflammatory</ls-static-150506></div>
+        </div>
+        <div class="card">
+          <div class="title"><ls-static-576439>Docosapentaenoic Acid (DPA)</ls-static-576439></div>
+          <div class="text"><ls-static-871178>Supports brain health, nerve transmission, and mood</ls-static-871178></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-we-made">
+    <div class="container">
+      <h2><ls-static-913443>Why We Made It</ls-static-913443></h2>
+      <p><ls-static-114492>A simple and delicious teaspoon provides the equivalent dose of 4-5 softgels – without the unnecessary (and to some objectionable) shell ingredients.</ls-static-114492></p>
+      <p><ls-static-642767>We are excited about making this new and innovative product available. With purity and quality you can taste – it represents a convenient and enjoyable way for you and your family to supplement your diet with a comprehensive and effective dose of a omega-3.</ls-static-642767></p>
+    </div>
+  </section>
+
+  <section class="omega-origins">
+    <img src="{{'AdobeStock.png' | asset_url}}">
+    <div class="container">
+      <div class="text">
+        <h2><ls-static-697316>Origins</ls-static-697316></h2>
+        <p><ls-static-127765>We wanted to make sure our product was manufactured to the highest quality standard – in an environment where quality and experience is merged.  Our thorough search brought us to Norway, likely the country with the longest and deepest history of omega-3 production.</ls-static-127765> </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- More Details -->
+  <section class="more-details">
+    <div class="container">
+      <h2><ls-static-5207025>More</ls-static-5207025> <span class="bold"><ls-static-8446967>Details</ls-static-8446967></span></h2>
+      <div class="dropdown-list">
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9930895>product benefits</ls-static-9930895>
+          </div>
+          <div class="text">
+            <p><ls-static-659276>Simple Spectrum Omega 3 DHA supplement is designed for cognitive support for the developing brain and nervous system.</ls-static-659276></p>
+            <ul>
+              <li><ls-static-769592>- 1200 mg total Omega 3s per serving</ls-static-769592></li>
+              <li><ls-static-835220>- Supports cognition, memory, and emotional well-being</ls-static-835220></li>
+              <li><ls-static-496617>- Delightful natural Orange dream flavor sweetened with monk fruit</ls-static-496617></li>
+            </ul>
+            <br>
+            <p>
+              <ls-static-419224>Omega 3 fatty acids are a type of fat that is essential for the body, which means the body cannot make it on its own and it is needed from the diet.</ls-static-419224>
+            </p>
+            <ul>
+              <li><ls-static-914501>- Docosahexaenoic Acid (DHA): supports brain health, mood, and anti-inflammatory</ls-static-914501></li>
+              <li><ls-static-476404>- Eicosapentaenoic Acid (EPA): supports brain health, mood, and anti-inflammatory</ls-static-476404></li>
+              <li><ls-static-106542>- Docosapentaenoic Acid (DPA): supports brain health, nerve transmission, and mood</ls-static-106542></li>
+            </ul>
+            <br>
+            <p><ls-static-44615>Simple Spectrum Omega 3 DHA supplement is made with the triglyceride form, which are more easily absorbed and more stable.</ls-static-44615></p>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-2531532>supplement facts and ingredients</ls-static-2531532>
+          </div>
+          <div class="text">
+            <img src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/Specs.png?v=1619805244">
+            <p><ls-static-962852>Simple Spectrum Omega 3 DHA supplement is designed with our kids with sensory needs in mind and is a natural flavored liquid, sweetened with monk fruit, with no added soy, gluten, casein, nuts, dairy, GMOs, added sugar, artificial preservatives, or artificial ingredients or flavoring. Our products are all third party tested for purity and quality. The highest quality nutrients in the best forms - it really is quite simple.</ls-static-962852></p>
+            <br>
+            <p><ls-static-888800>What makes our fish oil unique is that you will see a TG on the label. TG stands for triglyceride form of omega-3. This is the form found in nature. Most natural oils – such as olive oil and corn oil - are in the triglyceride form. Concentrated fish oils on the other hand have different molecular structures, with the Ethyl Ester form being most common. Clinical studies suggest that the triglyceride form of omega-3 provides better bioavailability then restructured omega-3 forms. Simply put, our Triglycerides are more stable and absorb better.</ls-static-888800></p>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>suggested use & dosage</ls-static-9053741>
+          </div>
+          <div class="text">
+            <p><ls-static-276924>Start out slow with half the recommendedamount and work to full dosage after 2 weeks.</ls-static-276924><br><strong><ls-static-184357>Please take with food.</ls-static-184357></strong></p>
+			<table class="suggestedUse" width="400px">
+              <tr>
+				<td><ls-static-374242>30-90 lbs</ls-static-374242></td>
+                <td><ls-static-549261>1/2 tsp</ls-static-549261> </td>
+                <td><ls-static-403383>once per day</ls-static-403383></td>
+              </tr>
+              <tr>
+                <td><ls-static-666744>91+ lbs</ls-static-666744> </td>
+                <td><ls-static-218529>1 tsp</ls-static-218529> </td>
+                <td><ls-static-150614>once per day</ls-static-150614></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+<!--         <div class="dropdown-item">
+          <div class="title">
+            <ls-static-4386734>manufacturing & expiration</ls-static-4386734>
+          </div>
+          <div class="text">
+            <ls-static-4385254>Finding a manufacturing facility that met the high standards of our founders was extremely important to us. All of our manufacturing is done in a FDA certified facility right here in the U.S.A.</ls-static-4385254><br/><br/>
+            <ls-static-4368923>Third-party testing is also very important to us. This means that an independent organization has reviewed our product and determined that the final product complies with specific standards for safety, quality, ingredient accuracy and performance. Basically, this is the most effective way to guarantee that the ingredients you intend to be in your product are actually in your product. Unfortunately, this is not the standard practice for most supplement makers but it absolutely should be!</ls-static-4368923><br/><br/>
+            <ls-static-2833702>All of our supplement containers have the manufactured date listed on them. Our supplement is effective and safe to use for up to two years after the manufactured date.</ls-static-2833702>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+  <!-- \More Details -->
+
+  <!-- Free from  -->
+  <section class="free-from">
+    <div class="container">
+      <h2><ls-static-7529247>Simple Spectrum Nutritional Supplement is</ls-static-7529247> <span class="bold"><ls-static-7192286>Always Free From</ls-static-7192286></span></h2>
+      <ul>
+        <li><ls-static-8449028>Gluten</ls-static-8449028></li>
+        <li><ls-static-2404520>GMOs</ls-static-2404520></li>
+        <li><ls-static-5399111>Soy</ls-static-5399111></li>
+        <li><ls-static-7091241>Added Sugar</ls-static-7091241></li>
+        <li><ls-static-1389384>Artificial Ingredients</ls-static-1389384></li>
+        <li><ls-static-5014804>Casein</ls-static-5014804></li>
+        <li><ls-static-7243571>Nuts</ls-static-7243571></li>
+        <li><ls-static-5436624>Dairy</ls-static-5436624></li>
+        <li><ls-static-3903537>Perservatives</ls-static-3903537></li>
+        <li><ls-static-6757138>Artificial Flavor</ls-static-6757138></li>
+      </ul>
+    </div>
+  </section>
+  <!-- \Free from  -->
+<!-- Dr. Shay -->
+<section class="dr-shay">
+	<div class="container">
+		<div class="dr-photo" >
+			<img src="https://cdn.shopify.com/s/files/1/0036/1820/9901/t/26/assets/shay-poho.png?v=1621287219" width="6vw" height="6vw">
+		</div>
+		<div class="dr-say">
+			<span class="bold"><ls-static-431830>Our Dr. Shay, DC handpicked each ingredient.</ls-static-431830></span>
+			<span><ls-static-231942>It was imortant that our fish oil contains no soy, as we use tocopherols from the sunflower plant for freshness. many fish oils on the market use tocopherols from soy, which may be problematic for very sensitive individuals! As always we use only the highest quality ingredients!</ls-static-231942></span>
+		</div>
+	</div>
+</section>
+<!-- /Dr. Shay -->
+<!-- FAQ -->
+  <section class="faq">
+    <div class="container" >
+      <h2><ls-static-5207025>Your Questions,</ls-static-5207025> <span class="bold"><ls-static-8446967>Answered</ls-static-8446967></span></h2>
+      <p class='first-comm'> <ls-static-218022>if you don't see your question answered below please contact us at</ls-static-218022> <span class='faq-email'><ls-static-73381>info@simplespctrum.com</ls-static-73381></span>
+      <div class="dropdown-list">
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9930895>What are essential fatty acids (EFAs) and why do we need omega 3 EFAs?</ls-static-9930895>
+          </div>
+          <div class="text">
+            <ls-static-433486>Essential fatty acids (EFAs) are polyunsaturated fats that are required by the human body to be ingested, through food or supplement, because our bodies cannot make them. Omega 3 and omega 6 fatty acids need to be consumed in a balanced ratio. They are needed to produce eicosanoids, which are hormone like compounds. Eicosanoids are involved with the inflammatory response, nerve transmission, and proper blood pressure and cholesterol levels. The standard western diet has been shown to be overabundant in Omega 6 fatty acids, and depleted of Omega 3’s, such as EPA (eicosapentaenoic acid) and DHA (docosahexaenoic acid). Scientific research indicates this imbalance may contribute to a host of chronic health issues.</ls-static-433486>
+            <br>
+            <p>
+              <ls-static-248409>Omega 3 fatty acids are a type of fat that is essential for the body, which means the body cannot make it on its own and it is needed from the diet.</ls-static-248409>
+            </p>
+            <ul>
+              <li><ls-static-411733>- Docosahexaenoic Acid (DHA): supports brain health, mood, and anti-inflammatory</ls-static-411733></li>
+              <li><ls-static-892067>- Eicosapentaenoic Acid (EPA): supports brain health, mood, and anti-inflammatory</ls-static-892067></li>
+              <li><ls-static-17803>- Docosapentaenoic Acid (DPA): supports brain health, nerve transmission, and mood</ls-static-17803></li>
+            </ul>
+            <br>
+            <p><ls-static-27539>Simple Spectrum Omega 3 DHA supplement is made with the triglyceride form, which are more easily absorbed and more stable.</ls-static-27539></p>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-2531532>Can we get enough Omega 3’s from the food we eat?</ls-static-2531532>
+          </div>
+          <div class="text">
+            <ls-static-213032>The main food source of Omega 3 fatty acids is fish. A standard American diet simply does not contain enough fish to meet the daily requirements of Omega 3’s. There are also varying amounts of Omega 3 EFA’s in fish depending upon food source and if they are farm raised.</ls-static-213032>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>What type of fish does Simple Spectrum use in the DHA Fish Oil Supplement?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-763233>Simple Spectrum is made from a mix of highly purified wild anchovy, sardine, squid, tuna and mackerel.</ls-static-763233>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Where is Simple Spectrum fish oil manufactured?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-750122>This product is manufactured in Norway.</ls-static-750122>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>What is DPA?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-568725>DPA is another type of Omega 3 EFA called docosapentaenoic acid. Recent evidence has shown that this form of Omega 3 has similar benefits to the widely known EPA and DHA, but potentially higher absorption.</ls-static-568725> 
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Should you take fish oil with food?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-686017>It is recommended to take Simple Spectrum fish oil supplement with a meal to prevent upset stomach and to help with digestion of fats.</ls-static-686017>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Should you take fish oil with food?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-788943>It is recommended to take Simple Spectrum fish oil supplement with a meal to prevent upset stomach and to help with digestion of fats.</ls-static-788943>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Is it better to take fish oil in the morning or night?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-989984>There is no significant benefit to taking fish oil at a particular time of the day, since it’s benefits are not immediate. Take it when it works best for you, with food.</ls-static-989984> 
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Does this product contain SOY?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-184006>Simple Spectrum High DHA fish oil supplement is preserved with tocopherols (Vitamin E) derived from sunflower. Most fish oil supplements on the market use tocopherols derived from SOY, which means there may be traces of soy left within the product. At Simple Spectrum we strive to make sure our products are free from all major allergens and food irritants.</ls-static-184006>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>How is mercury (and other toxins) removed from the fish oil?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-713474>Toxins that accumulate in fish during their life spans are removed by using high quality raw materials and using advanced molecular distillation. Third party testing confirms the removal of contaminants.</ls-static-713474>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Are there any side effects to taking fish oil</ls-static-9053741>
+          </div>
+          <div class="text">
+			<ls-static-258504>Generally, fish oils are extremely well tolerated. However, we always recommend you consult with your physician who knows you best. If you experience burping or a foul taste, your supplement may be rancid (oxidized). Sometimes, people can not produce enough lipase, an enzyme that helps digest fats, and it may take some time before your body adjusts to produce an adequate amount for digestion. It is recommended to take with food.</ls-static-258504>       
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>Can fish oil be taken with other supplements?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-700562>Simple Spectrum High DHA fish oil supplement may be taken with Simple Spectrum all in one supplement. It is not recommended to combine with another supplement that also contains Omega 3 fatty acids.</ls-static-700562>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>What should I look for to determine a high quality fish oil supplement?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-6836>At Simple Spectrum, we use third party testing to ensure high quality, purity, and product freshness. Our manufacturing facilities are GMP certified, which ensures high manufacturing standards. Research has shown that the triglyceride form of Omega 3 fatty acids, which we use in Simple Spectrum, is better absorbed than synthetic versions.</ls-static-6836>
+          </div>
+        </div>
+        <div class="dropdown-item">
+          <div class="title">
+            <ls-static-9053741>How long does fish oil last? How should it be stored?</ls-static-9053741>
+          </div>
+          <div class="text">
+            <ls-static-920728>Simple Spectrum High DHA fish oil supplement is guaranteed to last for 2 years on the shelf. It is recommended to be stored in a cool environment, such as in the refrigerator for best results.</ls-static-920728>
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </section>
+  <!-- \FAQ -->
+  <!-- Reviews -->
+  <section class="reviews">
+    <div id="looxReviews" data-product-id="6242333163697" class="page-width"></div>
+  </section>
+  <!-- \Reviews -->
+
+
+
+
+<section id="subscribe-section" class="subscribe">
+    <div class="container">
+      <h2><ls-static-461206>Subscribe to the</ls-static-461206> <span class="bold"><ls-static-966681>Simple Digest</ls-static-966681></span> <ls-static-689282>& Get</ls-static-689282> <span class="bold"><ls-static-350056>10% off</ls-static-350056></span></h2>
+      <p>
+		<ls-static-624142>We’ll send you tips and resources as well as sales and promotions!</ls-static-624142>
+      </p>
+      <div class="klaviyo-form-SRqvHA"></div>
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+    
+    let i = setInterval(function() {
+        if (document.querySelector(".bold-ro__bold-active")){
+            clearInterval(i);
+          $('.bold-ro__recurring-div label').click();
+          $('.ro_widget').show(0);
+        }
+    }, 50);
+  });
+</script>
+
+
+<!-- Modal HTML embedded directly into document -->
+<div id="subscription" class="modal">
+  <h1><ls-static-1617652>Subscribe + Save!</ls-static-1617652></h1>
+  <h5><ls-static-1098078>Save 15% off regular prices on all future orders.</ls-static-1098078></h5>
+  <p><ls-static-4709015>Your orders will be automatically shipped so you never run out. Manage your subscriptions through your online account to pause, skip or cancel future shipments at anytime.</ls-static-4709015></p>
+  <div class="quant-freq">
+    <div class="quant"><ls-static-2732327>Quantity: Four Bottles</ls-static-2732327></div>
+    <div class="freq"><ls-static-9788662>Frequency: Every 120 Days</ls-static-9788662></div>
+  </div>
+  <a href="#" class="yes"><ls-static-9620873>Yes, Please!</ls-static-9620873></a>
+  <a href="#" class="no"><ls-static-5737777>No, Thank You</ls-static-5737777></a>
+</div>
+<style type="text/css">
+  .ro_widget {
+    display: none;
+  }
+  .ro_widget + button {
+    margin-bottom: 40px !important;
+      background-color: #fece33;
+  }
+  select#productSelect {
+    width: 27vw;
+    font-weight: 600;
+    position: relative!important;
+    font-size: 1.111vw;
+    height: 3.3vw;
+    line-height: 3vw;
+    padding-top: 0;
+    position: relative;
+    border: 2px solid #e87a68;
+    padding-left: 2vw;
+    text-transform: uppercase;
+    letter-spacing: .1vw;
+  }
+  @media (min-width: 1000px) {
+    .product.product-omega .btn {
+      width: auto;
+    }
+  }
+</style>
+{{ 'pdp-omega.js' | asset_url | script_tag }}

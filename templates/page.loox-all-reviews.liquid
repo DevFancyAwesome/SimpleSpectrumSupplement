@@ -1,0 +1,72 @@
+{%- include 'LS_83195002989_global' -%}
+{% if shop.metafields.loox["global_stats"] %}
+{%- include 'LS_83195002989_metafield', item: shop, namespace: 'loox', key: "global_stats" -%}{% assign looxstats =  LS_83195002989_item_metafield | split: "," %}
+<div itemscope itemtype="https://schema.org/Product">
+<meta itemprop="name" content="{{ shop.name | escape }}"/>
+<div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
+<meta itemprop="ratingValue" content="{{ looxstats[0] }}"/>
+<meta itemprop="ratingCount" content="{{ looxstats[1] }}"/>
+</div>
+</div>
+{% endif %}
+{{ 'text-template.scss.css' | asset_url | stylesheet_tag }}
+<!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <h1>{% include 'LS_83195002989_title', item: page %}{{ LS_83195002989_item_title  }}</h1>
+      </div>
+    </div>
+  </section>
+  <!-- \Hero -->
+
+  <!-- Post -->
+  <section class="post">
+    <div class="container">
+      <div class="post-content">
+        {% include 'LS_83195002989_content', item: page %}{{ LS_83195002989_item_content  }}
+    </div>
+  </section>
+  <!-- \Post -->
+
+
+<section id="subscribe-section" class="subscribe">
+    <div class="container">
+      <h2><ls-static-463616>Subscribe to the</ls-static-463616> <span class="bold"><ls-static-96274>Simple Digest</ls-static-96274></span> <ls-static-984738>& Get</ls-static-984738> <span class="bold"><ls-static-827670>10% off</ls-static-827670></span></h2>
+      <p>
+		<ls-static-308476>We’ll send you tips and resources as well as sales and promotions!</ls-static-308476>
+      </p>
+      <div class="klaviyo-form-SRqvHA"></div>
+    </div>
+  </section>
+<!-- \Subscribe -->
+
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+
+{{ 'text-template.js' | asset_url | script_tag }}
+<div id="looxReviews" data-loox-aggregate="" class="loox-reviews-default"></div>

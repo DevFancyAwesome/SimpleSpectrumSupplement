@@ -1,0 +1,279 @@
+{{ 'pdp-updated.css' | asset_url | stylesheet_tag }}
+{%- include 'LS_83195002989_global' -%}
+{% assign current_variant = product.selected_or_first_available_variant %}
+<link rel="stylesheet" href="https://use.typekit.net/rib3pdk.css">
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org/",
+                                                  "@type": "Product",
+                                                "@id": {{ canonical_url | json }},
+  "name": {% include 'LS_83195002989_title', item: product %}{{ LS_83195002989_item_title | json }},
+  "url": {{ shop.url | append: product.url | json }},
+  {%- if product.featured_image -%}
+    {%- assign image_size = product.featured_image.width | append: 'x' -%}
+    "image": [
+    {% comment ls-rpl %}
+      {{ product.featured_image.src | img_url: image_size | prepend: "https:" | json }}{% endcomment %}
+    {%- capture LS_IMG_URL -%}
+      {%- render "ls-img-url", image: product.featured_image.src, img_url: image_size -%}{%- endcapture -%}
+    {{ LS_IMG_URL | prepend: "https:" | json }}{% comment /ls-rpl %}{% endcomment %}
+    ],
+  {%- endif -%}
+  "description": {% include 'LS_83195002989_description', item: product %}{{ LS_83195002989_item_desc | strip_html | json }},
+  {%- if current_variant.sku != blank -%}
+    "sku": {{ current_variant.sku | json }},
+  {%- endif -%}
+  "brand": {
+  "@type": "Thing",
+                                                    "name": {{ product.vendor | json }}
+  },
+  "offers": [
+  {%- for variant in product.variants -%}
+    {% if variant.sku != 'SKU-SSS-006' %}
+      {
+      "@type" : "Offer",
+      {%- if variant.sku != blank -%}
+        "sku": {{ variant.sku | json }},
+      {%- endif -%}
+      "availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+      "price" : {{ variant.price | divided_by: 100.00 | json }},
+      "priceCurrency" : {{ cart.currency.iso_code | json }},
+      "url" : {{ shop.url | append: variant.url | json }}
+      }{% unless forloop.last or variant.sku == 'SKU-SSS-004' %},{% endunless %}
+    {% endif %}
+  {%- endfor -%}
+  ]
+  }
+</script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
+{% section 'omega-hero-v3' %}
+{% section 'omega-product-v3' %}
+
+<!-- Bundle and Save -->
+<section class="bundle-save bundle-save-omega">
+  <div class="container">
+    <h2>
+      <ls-static-4084564>Stock Up +
+        <strong>Save</strong>
+      </ls-static-4084564>
+    </h2>
+    <p>
+      <ls-static-9899996>Our DHA supplement contains the Simple Spectrum fish oil formula to support developing brains in children. So why not stock up and save money?
+      </ls-static-9899996>
+    </p>
+  </div>
+
+  <div class="products">
+    <div class="product-item">
+      <div class="product-image">
+        <img src="{{'omega_single_bottle.png' | asset_url}}" alt="Single Bottle">
+      </div>
+
+      <h3>
+        <ls-static-1858754>Buy One</ls-static-1858754>
+      </h3>
+      <span class="servings">
+        <ls-static-5201311>30 servings</ls-static-5201311>
+      </span>
+      <span class="savings"></span>
+      <span class="price">$34.99</span>
+      <button class="btn yellow-btn purchase-btn one-omega-bottle" data-id="38054112526513">
+        <ls-static-1731080>add to cart</ls-static-1731080>
+      </button>
+    </div>
+
+    <div class="product-item popular">
+      <div class="product-image">
+        <img src="{{ 'omega_two_bottles.png' | asset_url }}" alt="Two Bottle">
+      </div>
+
+      <h3>
+        <ls-static-3060933>Buy Two</ls-static-3060933>
+      </h3>
+      <span class="servings">
+        <ls-static-3957739>60 servings</ls-static-3957739>
+      </span>
+      <span class="savings">
+        <ls-static-5349885>15% savings</ls-static-5349885>
+      </span>
+      <span class="price">$59.50</span>
+      <button class="btn yellow-btn purchase-btn two-omega-bottle" data-id="38054112559281">
+        <ls-static-2890774>add to cart</ls-static-2890774>
+      </button>
+    </div>
+
+    <div class="product-item">
+      <div class="product-image">
+        <img src="{{ 'omega_four_bottles.png' | asset_url }}" alt="Four Bottle">
+      </div>
+
+      <h3>
+        <ls-static-4816395>Buy Four</ls-static-4816395>
+      </h3>
+      <span class="servings">
+        <ls-static-7062202>120 servings</ls-static-7062202>
+      </span>
+      <span class="savings">
+        <ls-static-9673638>20% savings</ls-static-9673638>
+      </span>
+      <span class="price">$111.99</span>
+      <button class="btn yellow-btn purchase-btn four-omega-bottle" data-id="38054112592049">
+        <ls-static-7113938>add to cart</ls-static-7113938>
+      </button>
+    </div>
+  </div>
+</section>
+<!-- \Bundle and Save -->
+
+{% section 'omega-accordion-v3' %}
+{% section 'bundle-shop-v3' %}
+
+{% section 'pdp-free-from' %}
+{% section 'bundle-origins-v3' %}
+
+<section class="inside-omegas">
+  <div class="container">
+    <h2>
+      <ls-static-12759>Inside</ls-static-12759>
+      <strong>
+        <ls-static-383468>Omegas</ls-static-383468>
+      </strong>
+    </h2>
+    <p>
+      <ls-static-53147>Omega 3 fatty acids are a type of fat that is essential for the body, which means the body cannot make it on its own and it is needed from the diet. Simple Spectrum Omega 3 DHA supplement is made with the triglyceride form, which are more easily absorbed and more stable.</ls-static-53147>
+    </p>
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <ls-static-757716>Docosahexaenoic Acid (DHA)</ls-static-757716>
+        </div>
+        <div class="text">
+          <ls-static-568364>Supports brain health, mood, and anti-inflammatory</ls-static-568364>
+        </div>
+      </div>
+      <div class="card">
+        <div class="title">
+          <ls-static-976090>Eicosapentaenoic Acid (EPA)</ls-static-976090>
+        </div>
+        <div class="text">
+          <ls-static-150506>Supports brain health, mood, and anti-inflammatory</ls-static-150506>
+        </div>
+      </div>
+      <div class="card">
+        <div class="title">
+          <ls-static-576439>Docosapentaenoic Acid (DPA)</ls-static-576439>
+        </div>
+        <div class="text">
+          <ls-static-871178>Supports brain health, nerve transmission, and mood</ls-static-871178>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% section 'pdp-testimonials' %}
+
+<div class="bundle-omega">
+  {% section 'pdp-banner-bundle' %}
+</div>
+
+{% section 'omega-blog-v3' %}
+
+<section id="subscribe-section" class="subscribe omega-subscribe">
+  <div class="container">
+    <h2>
+      <ls-static-650561>Subscribe to the</ls-static-650561>
+      <span class="bold">
+        <ls-static-912409>Simple Digest</ls-static-912409>
+      </span>
+      <ls-static-433172><span class="desktop">and</span><span class="mobile">&</span> Get</ls-static-433172>
+      <span class="bold">
+        <ls-static-275274>10% off</ls-static-275274>
+      </span>
+    </h2>
+    <p>
+      <ls-static-917282>We’ll send you tips and resources as well as sales and promotions!</ls-static-917282>
+    </p>
+    <div class="klaviyo-form-SRqvHA"></div>
+  </div>
+</section>
+
+{{ 'pdp-omega-v3.js' | asset_url | script_tag }}
+
+<script>
+  jQuery(document).ready(function($) {
+    $('#add-bundle-to-cart').click(function(e) {
+      e.preventDefault();
+      var items = {
+        id: {{ all_products['simple-spectrum-bundle'].variants.first.id }},
+        quantity: 1
+      };
+      $.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: items,
+        dataType: 'json',
+        success: function(data) {
+          window.location.href = '/cart';
+        }
+      });
+    })
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {}return false;
+    });
+
+// let i = setInterval(function() {
+// if (document.querySelector(".bold-ro__bold-active")) {
+//     clearInterval(i);
+//     $('.bold-ro__recurring-div label').click();
+//     $('.ro_widget').show(0);
+// }
+// }, 50);
+
+    $('.shop-section .image-slider').slick({
+      slidesToShow: 1,
+      infinite: true,
+      arrows: false,
+      dots: true,
+      mobileFirst: true
+    });
+
+    $('.school-testimonials .testimonials').slick({
+      mobileFirst: true,
+      adaptiveHeight: true,
+      prevArrow: '<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button"></button>',
+      nextArrow: '<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button"></button>',
+      responsive: [
+        {
+          breakpoint: 1000,
+          settings: {
+            arrows: true,
+            dots: false,
+            fade: true,
+            adaptiveHeight: true
+          }
+        }
+      ]
+    });
+  });
+</script>

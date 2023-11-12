@@ -1,0 +1,90 @@
+<section class="bundle-blog">
+  <picture>
+    {% if section.settings.image_mobile != blank %}
+        <source media="(max-width: 1000px)" srcset="{{ section.settings.image_mobile  | img_url: 'master' }}">
+    {% endif %}
+    <img src="{{ section.settings.image  | img_url: 'master' }}" alt="">
+  </picture>
+  <div class="container">
+    <div class="text">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="slider">
+        {% for block in section.blocks %}
+          {% assign handle = block.settings.url | split: '/' | last %}
+          {% assign handle = 'news/' | append: handle %}
+          {% assign article = articles[handle] %}
+          {% if article %}
+            <div class="item">
+              <a class="image" href="{{ article.url }}">
+                {% if article.image %}
+                  <img src="{{ article.image  | img_url: 'master' }}" alt="">
+                {% endif %}
+                <h3>{{ article.title }}</h3>
+              </a>
+              <div class="info">
+                {{ article.excerpt }}
+                <a href="{{ article.url }}"><ls-static-951416>Keep reading ></ls-static-951416></a>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $('.bundle-blog .slider').slick({
+    mobileFirst: true,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+          fade: true
+        }
+      }
+    ]
+  })
+</script>
+
+{% schema %}
+  {
+    "name": "Blog",
+    "settings": [
+      {
+        "id": "title",
+        "type": "text",
+        "label": "Title"
+      },
+      {
+        "id": "image",
+        "type": "image_picker",
+        "label": "image"
+      },
+      {
+        "id": "image_mobile",
+        "type": "image_picker",
+        "label": "image mobile"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "article",
+        "name": "Article",
+        "settings": [
+          {
+            "id": "url",
+            "type": "url",
+            "label": "Url"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

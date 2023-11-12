@@ -1,0 +1,74 @@
+<section class="school-subscribe bottom ">
+  <div class="container">
+    <div class="text">
+      <h2><span class="desk_only">{{ section.settings.header }}</span><span class="mob_only">{{ section.settings.header_mob }}</span></h2>
+      {{ section.settings.text }}
+    </div>
+    <div class="klaviyo-form-RemUJ2"></div>
+  </div>
+</section>
+<style type="text/css">
+  .desk_only{
+  	display:block;
+  }
+  .mob_only{
+  	display:none;
+  }
+  @media screen and (max-width:768px){
+    .mob_only{
+    	display:block;
+    }
+    .desk_only{
+    	display:none;
+    }
+  }
+</style>
+<script>
+  jQuery(document).ready(function($) {
+    $(".subscribe-submit").click(function(e) {
+      e.preventDefault();
+      var address = $(".subscribe-address").val();
+      
+      if (address) {
+        console.log($(".klaviyo-form-RemUJ2 input[name='email']"));
+        var inputBox = $(".klaviyo-form-RemUJ2 input[name='email']").eq(1);
+        for (var i = 0; i < address.length; i++) {
+          var e = jQuery.Event("keypress");
+          e.which = address.charCodeAt(i)
+          inputBox.trigger(e);
+        }
+        setTimeout(function() {
+          $(".klaviyo-form-RemUJ2 button").click();
+          $(".subscribe .container").append("You've successfully subscribed!");
+        });
+      } else {
+      
+      }
+      
+      return false;
+    });
+  });
+</script>
+
+  {% schema %}
+  {
+    "name": "Subscribe",
+    "settings": [
+      {
+        "id": "header",
+        "type": "text",
+        "label": "Header"
+      },
+      {
+        "id": "header_mob",
+        "type": "html",
+        "label": "Text"
+      },
+      {
+        "id": "text",
+        "type": "html",
+        "label": "Text"
+      }
+    ]
+  }
+{% endschema %}
