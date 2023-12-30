@@ -1,10 +1,10 @@
 {% if section.settings.desk_image%}
 <div class="section ">
 {%if section.settings.link_url%}
-  <a href="{{section.settings.link_url}}">
+  <a href="{{section.settings.link_url}}" aria-label="Testimonial link">
 {%endif%}
-  <img src="{{section.settings.desk_image | img_url:"2500x"}}" {%if section.settings.mob_image %}class="deskOnly"{%endif%}>
-  {%if section.settings.mob_image %}<img src="{{section.settings.mob_image | img_url: "1000x"}}" class="mobOnly">{%endif%}
+  <img alt="Testimonial image" src="{{section.settings.desk_image | img_url:"2500x"}}" {%if section.settings.mob_image %}class="deskOnly"{%endif%}>
+  {%if section.settings.mob_image %}<img alt="Testimonial image" src="{{section.settings.mob_image | img_url: "1000x"}}" class="mobOnly">{%endif%}
 {%if section.settings.link_url%}</a>{%endif%}
 </div>
 <style type="text/css">

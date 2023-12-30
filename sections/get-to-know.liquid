@@ -11,7 +11,7 @@
                           <source src="{{block.settings.video_url}}" type="video/mp4">
                       </video>
                       <div class="video-screen" style="display:block!important">
-                          <img src="{{block.settings.poster | img_url: "medium"}}" alt="">
+                          <img src="{{block.settings.poster | img_url: "medium"}}" alt="video" width="auto" height="auto">
                       </div>
                       <div class="play-btn"  id="play{{forloop.index }}"></div>
                       {%if block.settings.btnText != ''%}<a href="{{block.settings.btnLink}}" class="btn">{{block.settings.btnText}}</a>{%endif%}
@@ -22,17 +22,17 @@
 					<div class="video-title">{{section.settings.lastTabTitle}}</div>
 					<div class="video-view featured">
                         <div class="img-carousel">
-                          <a href="{{section.settings.last1Link}}" class="featured-link">
-                              <img src="{{section.settings.last1 | img_url:"medium"}}" alt="">
+                          <a href="{{section.settings.last1Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last1 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                           </a>
-                          <a href="{{section.settings.last2Link}}" class="featured-link">
-                              <img src="{{section.settings.last2 | img_url:"medium"}}" alt="">
+                          <a href="{{section.settings.last2Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last2 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                           </a>
-                          <a href="{{section.settings.last1Link}}" class="featured-link">
-                              <img src="{{section.settings.last3 | img_url:"medium"}}" alt="">
+                          <a href="{{section.settings.last1Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last3 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                           </a>
-                          <a href="{{section.settings.last2Link}}" class="featured-link">
-                              <img src="{{section.settings.last4 | img_url:"medium"}}" alt="">
+                          <a href="{{section.settings.last2Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last4 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                           </a>
                         </div>
 						<a href="{{section.settings.featuredLink}}" class="btn">{{section.settings.featuredbtn}}</a>
@@ -55,26 +55,26 @@
                   </div>
               {% endfor %}
               <div class="video">
-                        <a href="{{section.settings.last1Link}}" class="featured-link">
-                              <img src="{{section.settings.last1 | img_url:"medium"}}" alt="">
+                        <a href="{{section.settings.last1Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last1 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                         </a>
 						<a href="{{section.settings.featuredLink}}" class="btn">{{section.settings.featuredbtn}}</a>
 			  </div>
               <div class="video">
-                		<a href="{{section.settings.last2Link}}" class="featured-link">
-                              <img src="{{section.settings.last2 | img_url:"medium"}}" alt="">
+                		<a href="{{section.settings.last2Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last2 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                         </a>
 						<a href="{{section.settings.featuredLink}}" class="btn">{{section.settings.featuredbtn}}</a>
 			  </div>
               <div class="video">
-                        <a href="{{section.settings.last3Link}}" class="featured-link">
-                              <img src="{{section.settings.last3 | img_url:"medium"}}" alt="">
+                        <a href="{{section.settings.last3Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last3 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                         </a>
 						<a href="{{section.settings.featuredLink}}" class="btn">{{section.settings.featuredbtn}}</a>
 			  </div>
               <div class="video">
-                        <a href="{{section.settings.last4Link}}" class="featured-link">
-                              <img src="{{section.settings.last4 | img_url:"medium"}}" alt="">
+                        <a href="{{section.settings.last4Link}}" class="featured-link" aria-label="Featured Link">
+                              <img src="{{section.settings.last4 | img_url:"medium"}}" alt="video" width="auto" height="auto">
                         </a>
 						<a href="{{section.settings.featuredLink}}" class="btn">{{section.settings.featuredbtn}}</a>
 			  </div>

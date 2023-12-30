@@ -104,9 +104,9 @@
         <p>
           {% capture LS_locales_settings_key %}{{ section.id }}.contact-text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.contact-text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
         </p>
-        <a href="https://www.facebook.com/simplespectrumsupplement/"><i class="fab fa-facebook-square"></i></a>
-        <a href="https://www.instagram.com/simplespectrumsupplement/?hl=en"><i class="fab fa-instagram"></i></a>
-        <a href="https://twitter.com/simplespectrum"><i class="fab fa-twitter-square"></i></a>
+        <a href="https://www.facebook.com/simplespectrumsupplement/" aria-label="Facebook page for Simple Spectrum Supplement"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.instagram.com/simplespectrumsupplement/?hl=en" aria-label="Instagram page for Simple Spectrum Supplement"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/simplespectrum" aria-label="X page for Simple Spectrum Supplement"><i class="fab fa-twitter-square"></i></a>
       </div>
       <div class="why-simple">
         <h4>{% capture LS_locales_settings_key %}{{ section.id }}.why-header{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.why-header }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</h4>
@@ -132,7 +132,7 @@
           </ul>
         </div>
         <div class="ul-logo">
-          	<img src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/1200px-UL_Mark.svg_ff40eb1a-bb8d-493c-8e35-5a8730d0c496.png?v=1655309101">
+          	<img alt="Logo for footer" src="https://cdn.shopify.com/s/files/1/0036/1820/9901/files/1200px-UL_Mark.svg_ff40eb1a-bb8d-493c-8e35-5a8730d0c496.png?v=1655309101">
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@
         <div class="copyright">{% capture LS_locales_settings_key %}{{ section.id }}.copyright_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.copyright_text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}</div>
        {% for type in shop.enabled_payment_types %}
         {%assign icon_img = type | append : '.png' %}
-			<img src="{{ icon_img | asset_url }}" class="pay_icon">
+			<img src="{{ icon_img | asset_url }}" class="pay_icon" alt="payment icon">
         {%endfor%}
         <p>
           {% capture LS_locales_settings_key %}{{ section.id }}.disclaimer_text{% endcapture %}{% include 'LS_83195002989_settings', LS_settings_item: LS_locales_settings_key %}{% if LS_83195002989_settings_value == blank %}{{ section.settings.disclaimer_text }}{% else %}{{ LS_83195002989_settings_value  }}{% endif %}
